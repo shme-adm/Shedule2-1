@@ -24,11 +24,11 @@
                         <i class="fa fa-calendar" aria-hidden="true"></i> Справочники
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @Html.ActionLink("Предметы", "Contact", "Home", new { @class = "dropdown-item" })
-                        @Html.ActionLink("Типы занятий", "Contact", "Home", new { @class = "dropdown-item" })
-                        @Html.ActionLink("Кабинеты", "Contact", "Home", new { @class = "dropdown-item" })
-                        @Html.ActionLink("Группы", "Contact", "Home", new { @class = "dropdown-item" })
-                        @Html.ActionLink("Отделения", "Contact", "Home", new { @class = "dropdown-item" })                        
+                        @Html.ActionLink("Предметы", "Subjects", "Home", new { @class = "dropdown-item" })
+                        @Html.ActionLink("Типы занятий", "TypeOfClasses", "Home", new { @class = "dropdown-item" })
+                        @Html.ActionLink("Кабинеты", "Cabinets", "Home", new { @class = "dropdown-item" })
+                        @Html.ActionLink("Группы", "Groups", "Home", new { @class = "dropdown-item" })
+                        @Html.ActionLink("Отделения", "Offices", "Home", new { @class = "dropdown-item" })                        
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -36,8 +36,8 @@
                        Учетные записи
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @Html.ActionLink("Пользователи", "Contact", "Home", new { @class = "dropdown-item" })
-                        @Html.ActionLink("Преподаватели", "Contact", "Home", new { @class = "dropdown-item" })
+                        @Html.ActionLink("Пользователи", "Users", "Home", new { @class = "dropdown-item" })
+                        @Html.ActionLink("Преподаватели", "Teachers", "Home", new { @class = "dropdown-item" })
                     </div>
                 </li>                   
             </ul>

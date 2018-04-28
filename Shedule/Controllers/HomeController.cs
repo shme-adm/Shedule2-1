@@ -38,5 +38,47 @@ namespace Shedule.Controllers
 
             return View();
         }
+        public ActionResult Subjects()
+        {
+            ViewBag.Message = "Здесь будет справочник по предметам";
+
+            return View();
+        }
+        public ActionResult TypeOfClasses()
+        {
+            ViewBag.Message = "Здесь будет справочник по типам занятий";
+
+            return View();
+        }
+        public ActionResult Cabinets()
+        {
+            ViewBag.Message = "Здесь будет спрвочник по кабинетам";
+
+            return View();
+        }
+        public ActionResult Groups()
+        {
+            ViewBag.Message = "Здесь будет справочник по группам";
+
+            return View();
+        }
+        public ActionResult Offices()
+        {
+            ViewBag.Message = "Здесь будет справочник по отделениям";
+
+            return View();
+        }
+        public ActionResult Users()
+        {
+            ViewBag.Message = "Здесь будет справочник по пользователям";
+
+            return View();
+        }
+        public ActionResult Teachers()
+        {
+            ViewBag.Message = "Здесь будет справочник по преподавателям";
+
+            return View();
+        }
     }
 }
