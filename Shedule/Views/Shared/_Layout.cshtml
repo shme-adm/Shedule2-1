@@ -13,11 +13,18 @@
 <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         @Html.ActionLink("ЛОГО", "Index", "Home", new { area = "" }, new { @class = "navbar-brand col-sm-3 col-md-2 mr-0" })
-       @* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        @*<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">*@
+        @*<div class="d-flex align-self-stretch bg-light w-100 text-center" >Приветствие</div>*@
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Выход</a>
+            </li>
+        </ul>
+        @* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>*@
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        @* <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">@Html.ActionLink("Расписание", "Shedule", "Home", new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Отчеты", "Reports", "Home", new { @class = "nav-link" })</li>
@@ -43,7 +50,7 @@
                     </div>
                 </li>
             </ul>
-        </div>
+        </div>*@
     </nav>
     <div class="container-fluid">
         <div class="row">
