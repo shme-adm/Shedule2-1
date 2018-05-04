@@ -8,12 +8,14 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-info">     
-        @Html.ActionLink("ЛОГО", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })       
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        @Html.ActionLink("ЛОГО", "Index", "Home", new { area = "" }, new { @class = "navbar-brand col-sm-3 col-md-2 mr-0" })
+       @* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button>*@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -28,31 +30,114 @@
                         @Html.ActionLink("Типы занятий", "TypeOfClasses", "Home", new { @class = "dropdown-item" })
                         @Html.ActionLink("Кабинеты", "Cabinets", "Home", new { @class = "dropdown-item" })
                         @Html.ActionLink("Группы", "Groups", "Home", new { @class = "dropdown-item" })
-                        @Html.ActionLink("Отделения", "Offices", "Home", new { @class = "dropdown-item" })                        
+                        @Html.ActionLink("Отделения", "Offices", "Home", new { @class = "dropdown-item" })
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       Учетные записи
+                        Учетные записи
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @Html.ActionLink("Пользователи", "Users", "Home", new { @class = "dropdown-item" })
                         @Html.ActionLink("Преподаватели", "Teachers", "Home", new { @class = "dropdown-item" })
                     </div>
-                </li>                   
+                </li>
             </ul>
-    </div>
+        </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer class="text-center">
-            <p>&copy; @DateTime.Now.Year</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index","Home")">
+                                <span data-feather="home"></span>
+                                Домой
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Shedule","Home")">
+                                <span data-feather="calendar"></span>
+                                Расписание
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Reports","Home")">
+                                <span data-feather="bar-chart-2"></span>
+                                Отчеты
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Subjects","Home")">
+                                <span data-feather="book"></span>
+                                Предметы
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("TypeOfClasses","Home")">
+                                <span data-feather="edit"></span>
+                                Типы занятий
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Cabinets","Home")">
+                                <span data-feather="compass"></span>
+                                Кабинеты
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Groups","Home")">
+                                <span data-feather="folder"></span>
+                                Группы
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Offices","Home")">
+                                <span data-feather="layers"></span>
+                                Отделения
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Teachers","Home")">
+                                <span data-feather="users"></span>
+                                Преподаватели
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Users","Home")">
+                                <span data-feather="activity"></span>
+                                Пользователи
+                            </a>
+                        </li>
+                    </ul>
+                   
+                </div>
+            </nav>
+         </div>
+      </div>
+                    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Рабочая область</h1>
+                            <div class="btn-toolbar mb-2 mb-md-0">
+                                <div class="btn-group mr-2">
+                                    <button class="btn btn-sm btn-outline-secondary">Share</button>
+                                    <button class="btn btn-sm btn-outline-secondary">Export</button>
+                                </div>
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                                    <span data-feather="calendar"></span>
+                                    This week
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            @RenderBody()
+                        </div>
+                    </main>
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/bootstrap")
+                    @RenderSection("scripts", required: false)
+                    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+                    <script>feather.replace()</script>
 </body>
 </html>
