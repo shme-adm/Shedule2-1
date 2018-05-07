@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shedule.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace Shedule.Controllers
 {
     public class HomeController : Controller
     {
+        ShedulerContext db = new ShedulerContext();
+
         public ActionResult Index()
         {
             return View("Index");
@@ -79,6 +82,25 @@ namespace Shedule.Controllers
             ViewBag.Message = "Здесь будет справочник по преподавателям";
 
             return View();
+        }
+        [HttpGet]
+        public ActionResult Cities()
+        {
+            ViewBag.Message = "Справочник 'Города'";
+            ViewBag.Cities = db.Cities;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Cities(Cities city)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Cities.Add(city);
+                db.SaveChanges();
+            }
+            ViewBag.Departments = db.Cities;
+            return View(city);
         }
     }
 }
