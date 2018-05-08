@@ -9,7 +9,7 @@ namespace Shedule.Controllers
 {
     public class HomeController : Controller
     {
-        ShedulerContext db = new ShedulerContext();
+        //ShedulerContext db = new ShedulerContext();
 
         public ActionResult Index()
         {
@@ -83,7 +83,7 @@ namespace Shedule.Controllers
 
             return View();
         }
-        [HttpGet]
+        /*[HttpGet]
         public ActionResult Cities()
         {
             ViewBag.Message = "Справочник 'Города'";
@@ -100,7 +100,7 @@ namespace Shedule.Controllers
                 db.SaveChanges();
             }
             ViewBag.Departments = db.Cities;
-            return View(city);
-        }
+            return View(city);//поправить вывод после добавления нового элемента
+        }*/
     }
 }

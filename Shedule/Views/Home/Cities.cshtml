@@ -7,8 +7,8 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">@ViewBag.Message</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
-        @using (Html.BeginForm())
-    {
+        @*using (Html.BeginForm())
+        {
         @Html.ValidationSummary(true)
         <fieldset>            
             <div class="editor-field">
@@ -17,10 +17,9 @@
             </div>
             <p><input type="submit" value="Учесть" /></p>
         </fieldset>
-}
+}*@
         <button class="btn btn-sm btn-outline-secondary">
             <span data-feather="plus-circle"></span>
-            Новая запись
         </button>
     </div>
 </div>
@@ -34,19 +33,40 @@
                 <th class="" scope="col"></th>
             </tr>
         </thead>
+        @{ int  i=1;}
         @foreach (Cities item in ViewBag.Cities)
         {
-            int i = 0;
-            ++i;
+                     
             <tr>
-                <th class="" scope="row">@item.Id</th>
+                <th class="" scope="row">@i</th>
                 <td class="col">@item.Name</td>
                 <td class="text-right"><a><span data-feather="edit"></span></a></td>
                 <td class="text-right"><a><span data-feather="trash-2"></span></a></td>
             </tr>
+            i++;
         }
     </table>
 </div>
+<script>
+        $(document).ready(function () {
+
+            $.ajaxSetup({ cache: false });
+
+            $(".viewDialog").on("click", function (e) {
+                e.preventDefault();
+
+                $("<div></div>")
+                    .addClass("dialog")
+                    .appendTo("body")
+                    .dialog({
+                        title: $(this).attr("data-dialog-title"),
+                        close: function () { $(this).remove() },
+                        modal: true
+                    })
+                    .load(this.href);
+            });
+        });
+</script>
     @*<div class="jumbotron">
             <h2 class="text-center">Вкладка Города</h2>
             <p>@ViewBag.Message</p>

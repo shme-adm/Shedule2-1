@@ -21,36 +21,36 @@
             </li>
         </ul>
         @* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>*@
+                <span class="navbar-toggler-icon"></span>
+            </button>*@
 
         @* <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">@Html.ActionLink("Расписание", "Shedule", "Home", new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Отчеты", "Reports", "Home", new { @class = "nav-link" })</li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-calendar" aria-hidden="true"></i> Справочники
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @Html.ActionLink("Предметы", "Subjects", "Home", new { @class = "dropdown-item" })
-                        @Html.ActionLink("Типы занятий", "TypeOfClasses", "Home", new { @class = "dropdown-item" })
-                        @Html.ActionLink("Кабинеты", "Cabinets", "Home", new { @class = "dropdown-item" })
-                        @Html.ActionLink("Группы", "Groups", "Home", new { @class = "dropdown-item" })
-                        @Html.ActionLink("Отделения", "Offices", "Home", new { @class = "dropdown-item" })
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Учетные записи
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @Html.ActionLink("Пользователи", "Users", "Home", new { @class = "dropdown-item" })
-                        @Html.ActionLink("Преподаватели", "Teachers", "Home", new { @class = "dropdown-item" })
-                    </div>
-                </li>
-            </ul>
-        </div>*@
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Расписание", "Shedule", "Home", new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Отчеты", "Reports", "Home", new { @class = "nav-link" })</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-calendar" aria-hidden="true"></i> Справочники
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @Html.ActionLink("Предметы", "Subjects", "Home", new { @class = "dropdown-item" })
+                            @Html.ActionLink("Типы занятий", "TypeOfClasses", "Home", new { @class = "dropdown-item" })
+                            @Html.ActionLink("Кабинеты", "Cabinets", "Home", new { @class = "dropdown-item" })
+                            @Html.ActionLink("Группы", "Groups", "Home", new { @class = "dropdown-item" })
+                            @Html.ActionLink("Отделения", "Offices", "Home", new { @class = "dropdown-item" })
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Учетные записи
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @Html.ActionLink("Пользователи", "Users", "Home", new { @class = "dropdown-item" })
+                            @Html.ActionLink("Преподаватели", "Teachers", "Home", new { @class = "dropdown-item" })
+                        </div>
+                    </li>
+                </ul>
+            </div>*@
     </nav>
     <div class="container-fluid">
         <div class="row">
@@ -74,22 +74,22 @@
                                 <span data-feather="bar-chart-2"></span>
                                 Отчеты
                             </a>
-                        </li>                        
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Users","Home")">
                                 <span data-feather="users"></span>
                                 Пользователи
                             </a>
-                        </li>                       
+                        </li>
                     </ul>
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         <span>Справочники</span>
-                        <a class="d-flex align-items-center text-muted" href="#">                            
+                        <a class="d-flex align-items-center text-muted" href="#">
                         </a>
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Cities","Home")">
+                            <a class="nav-link" href="@Url.Action("Cities","City")">
                                 <span data-feather="book"></span>
                                 Города
                             </a>
@@ -145,26 +145,46 @@
                     </ul>
                 </div>
             </nav>
-         </div>
-      </div>
-                    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                       @* <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                            <h1 class="h2">Рабочая область</h1>
-                            <div class="btn-toolbar mb-2 mb-md-0">
-                                    <button class="btn btn-sm btn-outline-secondary">
-                                    <span data-feather="plus-circle"></span>
-                                    Новая запись
-                                </button>
-                            </div>
-                        </div>*@
-                       
-                            @RenderBody()
-                        
-                    </main>
-                    @Scripts.Render("~/bundles/jquery")
-                    @Scripts.Render("~/bundles/bootstrap")
-                    @RenderSection("scripts", required: false)
-                    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-                    <script>feather.replace()</script>
+        </div>
+    </div>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        @* <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Рабочая область</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                        <button class="btn btn-sm btn-outline-secondary">
+                        <span data-feather="plus-circle"></span>
+                        Новая запись
+                    </button>
+                </div>
+            </div>*@
+
+        @RenderBody()
+
+    </main>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>feather.replace()</script>
+    <script>
+        $(document).ready(function () {
+
+            $.ajaxSetup({ cache: false });
+
+            $(".viewDialog").on("click", function (e) {
+                e.preventDefault();
+
+                $("<div></div>")
+                    .addClass("dialog")
+                    .appendTo("body")
+                    .dialog({
+                        title: $(this).attr("data-dialog-title"),
+                        close: function () { $(this).remove() },
+                        modal: true
+                    })
+                    .load(this.href);
+            });
+        });
+    </script>
 </body>
 </html>
