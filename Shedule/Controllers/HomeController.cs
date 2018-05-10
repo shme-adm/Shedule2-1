@@ -83,24 +83,6 @@ namespace Shedule.Controllers
 
             return View();
         }
-        /*[HttpGet]
-        public ActionResult Cities()
-        {
-            ViewBag.Message = "Справочник 'Города'";
-            ViewBag.Cities = db.Cities;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Cities(Cities city)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Cities.Add(city);
-                db.SaveChanges();
-            }
-            ViewBag.Departments = db.Cities;
-            return View(city);//поправить вывод после добавления нового элемента
-        }*/
+        
     }
 }
