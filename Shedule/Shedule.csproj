@@ -151,6 +151,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Buildings.cs" />
+    <Compile Include="Models\Cabinets.cs" />
     <Compile Include="Models\Cities.cs" />
     <Compile Include="Models\ShedulerContext.cs" />
     <Compile Include="Models\Units.cs" />
@@ -297,13 +299,20 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Directories\Cities.cshtml" />
     <Content Include="Views\Directories\Create.cshtml" />
-    <Content Include="Views\Home\testmodal.cshtml" />
     <Content Include="Views\Directories\Delete.cshtml" />
     <Content Include="Views\Directories\Edit.cshtml" />
     <Content Include="Views\Directories\Units.cshtml" />
     <Content Include="Views\Directories\CreateUnits.cshtml" />
     <Content Include="Views\Directories\EditUnits.cshtml" />
     <Content Include="Views\Directories\DeleteUnits.cshtml" />
+    <Content Include="Views\Directories\Buildings.cshtml" />
+    <Content Include="Views\Directories\CreateBuildings.cshtml" />
+    <Content Include="Views\Directories\EditBuildings.cshtml" />
+    <Content Include="Views\Directories\DeleteBuildings.cshtml" />
+    <Content Include="Views\Directories\Cabinets.cshtml" />
+    <Content Include="Views\Directories\CreateCabinets.cshtml" />
+    <Content Include="Views\Directories\DeleteCabinets.cshtml" />
+    <Content Include="Views\Directories\EditCabinets.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,0 +1,32 @@
+﻿@model Shedule.Models.Buildings
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4>Новая запись</h4>
+        <button class="close" data-dismiss="modal" area-hidden="true">x</button>
+    </div>
+    <div class="modal-body">
+        @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            @Html.LabelFor(model => model.Name)
+            @Html.EditorFor(model => model.Name)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.CitiesId)
+            @Html.DropDownListFor(model => model.CitiesId, ViewBag.Cities as SelectList)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.UnitsId)
+            @Html.DropDownListFor(model => model.UnitsId, ViewBag.Units as SelectList)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Comment)
+            @Html.TextAreaFor(model => model.Comment)
+        </div>
+        <p><input type="submit" value="Добавить" /></p>
+}
+    </div>
+</div>

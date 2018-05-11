@@ -15,5 +15,11 @@ namespace Shedule.Models
         [Display(Name = "Город")]
         public int? CitiesId { get; set; }
         public Cities Cities { get; set; }
+
+        public ICollection<Buildings> Buildings { get; set; }
+        public Units()
+        {
+            Buildings = new List<Buildings>();
+        }
     }
 }

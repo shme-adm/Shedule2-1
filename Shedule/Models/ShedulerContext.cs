@@ -12,5 +12,7 @@ namespace Shedule.Models
         public ShedulerContext() : base("DefaultConnection"){ }
         public DbSet<Cities> Cities { get; set; }
         public DbSet<Units> Units { get; set; }
+        public DbSet<Buildings> Buildings { get; set; }
+        public DbSet<Cabinets> Cabinets { get; set; }
     }
 }

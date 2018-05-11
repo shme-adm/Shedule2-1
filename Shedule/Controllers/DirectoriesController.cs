@@ -36,7 +36,7 @@ namespace Shedule.Controllers
                 db.SaveChanges();
             }
             //ViewBag.Cities = db.Cities;
-           // return View("Cities");//поправить вывод после добавления нового элемента
+            // return View("Cities");//поправить вывод после добавления нового элемента
             return RedirectToAction("Cities");
         }
 
@@ -85,7 +85,7 @@ namespace Shedule.Controllers
         public ActionResult Units()
         {
             ViewBag.Message = "Справочник 'Подразделения'";
-            
+
             var unit = db.Units.Include(u => u.Cities);
             ViewBag.Units = unit;
             return View();
@@ -94,7 +94,7 @@ namespace Shedule.Controllers
         [HttpGet]
         public ActionResult CreateUnits()
         {
-            SelectList cities = new SelectList(db.Cities,"Id","Name");
+            SelectList cities = new SelectList(db.Cities, "Id", "Name");
             ViewBag.Cities = cities;
             return PartialView("CreateUnits");
         }
@@ -111,7 +111,7 @@ namespace Shedule.Controllers
         [HttpGet]
         public ActionResult EditUnits(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return HttpNotFound();
             }
@@ -120,10 +120,10 @@ namespace Shedule.Controllers
             {
                 SelectList cities = new SelectList(db.Cities, "Id", "Name", unit.CitiesId);
                 ViewBag.Cities = cities;
-                return PartialView("EditUnits",unit);
+                return PartialView("EditUnits", unit);
             }
             return RedirectToAction("Units");
-            
+
         }
 
         [HttpPost]
@@ -157,6 +157,168 @@ namespace Shedule.Controllers
                 db.SaveChanges();
             }
             return RedirectToAction("Units");
+        }
+        //++++++++Buildings-Start++++++++++++
+        public ActionResult Buildings()
+        {
+            ViewBag.Message = "Справочник 'Здания'";
+
+            var building = db.Buildings.Include(b => b.Cities).Include(b => b.Units);
+            ViewBag.Buildings = building;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CreateBuildings()
+        {
+            SelectList cities = new SelectList(db.Cities, "Id", "Name");
+            SelectList units = new SelectList(db.Units, "Id", "Name");
+            ViewBag.Cities = cities;
+            ViewBag.Units = units;
+            return PartialView("CreateBuildings");
+        }
+
+        [HttpPost]
+        public ActionResult CreateBuildings(Buildings building)
+        {
+            db.Buildings.Add(building);
+            db.SaveChanges();
+
+            return RedirectToAction("Buildings");
+        }
+
+        [HttpGet]
+        public ActionResult EditBuildings(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            var building = db.Buildings.Find(id);
+            if (building != null)
+            {
+                SelectList cities = new SelectList(db.Cities, "Id", "Name", building.CitiesId);
+                SelectList units = new SelectList(db.Units, "Id", "Name", building.UnitsId);
+                ViewBag.Cities = cities;
+                ViewBag.Units = units;
+                return PartialView("EditBuildings", building);
+            }
+            return RedirectToAction("Buildings");
+
+        }
+
+        [HttpPost]
+        public ActionResult EditBuildings(Buildings buildings)
+        {
+            db.Entry(buildings).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Buildings");
+        }
+
+        public ActionResult DeleteBuildings(int id)
+        {
+            var building = db.Buildings.Find(id);
+            if (building != null)
+            {
+                return PartialView("DeleteBuildings", building);
+            }
+            return View("Buildings");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("DeleteBuildings")]
+        public ActionResult DeleteRecordBuildings(int id)
+        {
+            var building = db.Buildings.Find(id);
+
+            if (building != null)
+            {
+                db.Buildings.Remove(building);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Buildings");
+
+            //++++++++Buildings-End++++++++++++
+        }
+
+        //+++++++++++Cabinets-Start+++++++++++++
+        public ActionResult Cabinets()
+        {
+            ViewBag.Message = "Справочник 'Кабинеты'";
+
+            var cabinet = db.Cabinets.Include(b => b.Buildings);
+            ViewBag.Cabinets = cabinet;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CreateCabinets()
+        {
+            SelectList buildings = new SelectList(db.Buildings, "Id", "Name");
+            ViewBag.Buildings = buildings;
+            return PartialView("CreateCabinets");
+        }
+
+        [HttpPost]
+        public ActionResult CreateCabinets(Cabinets cabinet)
+        {
+            db.Cabinets.Add(cabinet);
+            db.SaveChanges();
+
+            return RedirectToAction("Cabinets");
+        }
+
+        [HttpGet]
+        public ActionResult EditCabinets(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            var cabinet = db.Cabinets.Find(id);
+            if (cabinet != null)
+            {
+                SelectList buildings = new SelectList(db.Buildings, "Id", "Name", cabinet.BuildingsId);
+                ViewBag.Buildings = buildings;
+                return PartialView("EditCabinets", cabinet);
+            }
+            return RedirectToAction("Cabinets");
+
+        }
+
+        [HttpPost]
+        public ActionResult EditBuildings(Cabinets cabinets)
+        {
+            db.Entry(cabinets).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Cabinets");
+        }
+
+        public ActionResult DeleteCabinets(int id)
+        {
+            var cabinet = db.Cabinets.Find(id);
+            if (cabinet != null)
+            {
+                return PartialView("DeleteCabinets", cabinet);
+            }
+            return View("Cabinets");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("DeleteBuildings")]
+        public ActionResult DeleteRecordCabinets(int id)
+        {
+            var cabinet = db.Cabinets.Find(id);
+
+            if (cabinet != null)
+            {
+                db.Cabinets.Remove(cabinet);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Cabinets");
+            //+++++++++++Cabinets-End+++++++++++++++
         }
     }
 }

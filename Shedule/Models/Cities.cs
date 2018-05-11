@@ -13,9 +13,13 @@ namespace Shedule.Models
         public string Name { get; set; }
 
         public ICollection<Units> Units { get; set; }
+        public ICollection<Buildings> Buildings { get; set; }
         public Cities()
         {
             Units = new List<Units>();
+            Buildings = new List<Buildings>();
         }
+        
+        
     }
 }
