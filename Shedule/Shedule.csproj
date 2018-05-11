@@ -301,7 +301,9 @@
     <Content Include="Views\Directories\Delete.cshtml" />
     <Content Include="Views\Directories\Edit.cshtml" />
     <Content Include="Views\Directories\Units.cshtml" />
-    <Content Include="Views\Directories\CreateUnit.cshtml" />
+    <Content Include="Views\Directories\CreateUnits.cshtml" />
+    <Content Include="Views\Directories\EditUnits.cshtml" />
+    <Content Include="Views\Directories\DeleteUnits.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

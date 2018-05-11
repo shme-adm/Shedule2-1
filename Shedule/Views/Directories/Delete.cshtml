@@ -1,4 +1,4 @@
-﻿@model Shedule.Models.Cities
+﻿@*@model Shedule.Models.Cities*@
 
 <div class="modal-content">
     <div class="modal-header">
@@ -6,9 +6,9 @@
         <button class="close" data-dismiss="modal" area-hidden="true">x</button>
     </div>
     <div class="modal-body">
-        <div>
+        @*<div>
             <p>Город: @Html.DisplayFor(c => c.Name)</p>
-        </div>
+        </div>*@
         @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()

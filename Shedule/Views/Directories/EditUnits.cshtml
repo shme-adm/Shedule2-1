@@ -1,0 +1,28 @@
+﻿@model Shedule.Models.Units
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4>Редактирование записи</h4>
+        <button class="close" data-dismiss="modal" area-hidden="true">x</button>
+    </div>
+    <div class="modal-body">
+        @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(с => с.Id)
+        <div>
+            @Html.LabelFor(model => model.Name)
+            @Html.EditorFor(model => model.Name)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Name)
+            @Html.DropDownListFor(model=>model.CitiesId, ViewBag.Cities as SelectList)
+        </div>
+
+        <p><input type="submit" value="Сохранить" /></p>
+
+}
+    </div>
+</div>
+
+

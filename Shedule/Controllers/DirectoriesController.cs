@@ -86,25 +86,76 @@ namespace Shedule.Controllers
         {
             ViewBag.Message = "Справочник 'Подразделения'";
             
-            var units = db.Units.Include(u => u.Cities);
-            ViewBag.Units = units;
+            var unit = db.Units.Include(u => u.Cities);
+            ViewBag.Units = unit;
             return View();
         }
 
         [HttpGet]
-        public ActionResult CreateUnit()
+        public ActionResult CreateUnits()
         {
             SelectList cities = new SelectList(db.Cities,"Id","Name");
             ViewBag.Cities = cities;
-            return View();
+            return PartialView("CreateUnits");
         }
 
         [HttpPost]
-        public ActionResult CreateUnit(Units units)
+        public ActionResult CreateUnits(Units unit)
         {
-            db.Units.Add(units);
+            db.Units.Add(unit);
             db.SaveChanges();
 
+            return RedirectToAction("Units");
+        }
+
+        [HttpGet]
+        public ActionResult EditUnits(int? id)
+        {
+            if(id == null)
+            {
+                return HttpNotFound();
+            }
+            var unit = db.Units.Find(id);
+            if (unit != null)
+            {
+                SelectList cities = new SelectList(db.Cities, "Id", "Name", unit.CitiesId);
+                ViewBag.Cities = cities;
+                return PartialView("EditUnits",unit);
+            }
+            return RedirectToAction("Units");
+            
+        }
+
+        [HttpPost]
+        public ActionResult EditUnits(Units units)
+        {
+            db.Entry(units).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Units");
+        }
+
+        public ActionResult DeleteUnits(int id)
+        {
+            var unit = db.Units.Find(id);
+            if (unit != null)
+            {
+                return PartialView("DeleteUnits", unit);
+            }
+            return View("Units");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("DeleteUnits")]
+        public ActionResult DeleteRecordUnits(int id)
+        {
+            var unit = db.Units.Find(id);
+
+            if (unit != null)
+            {
+                db.Units.Remove(unit);
+                db.SaveChanges();
+            }
             return RedirectToAction("Units");
         }
     }
