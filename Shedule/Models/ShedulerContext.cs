@@ -14,5 +14,8 @@ namespace Shedule.Models
         public DbSet<Units> Units { get; set; }
         public DbSet<Buildings> Buildings { get; set; }
         public DbSet<Cabinets> Cabinets { get; set; }
+        public DbSet<Subjects> Subjects { get; set; }
+        public DbSet<Subjects_groups> Subjects_groups { get; set; }
+        public DbSet<TypeOfClasses> TypeOfClasses { get; set; }
     }
 }

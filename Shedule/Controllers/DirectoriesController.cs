@@ -47,6 +47,9 @@ namespace Shedule.Controllers
             {
                 return PartialView("Delete", city);
             }
+
+            //var col = city.Units.Count();
+
             return View("Cities");
         }
         [HttpPost]
@@ -288,7 +291,7 @@ namespace Shedule.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditBuildings(Cabinets cabinets)
+        public ActionResult EditCabinets(Cabinets cabinets)
         {
             db.Entry(cabinets).State = EntityState.Modified;
             db.SaveChanges();
@@ -307,7 +310,7 @@ namespace Shedule.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ActionName("DeleteBuildings")]
+        [ActionName("DeleteCabinets")]
         public ActionResult DeleteRecordCabinets(int id)
         {
             var cabinet = db.Cabinets.Find(id);
