@@ -9,7 +9,7 @@
     <div class="btn-toolbar mb-2 mb-md-0">
         <button class="btn btn-sm btn-outline-secondary">
             @*<span data-feather="plus-circle"></span>*@
-            @Html.ActionLink("Новая запись", "CreateCabinets", "Directories", new { }, new { @class = "viewDialog", data_dialog_title = "Создание модели" })
+            @Html.ActionLink("Новая запись", "Create", "TypeOfClasses", new { }, new { @class = "viewDialog", data_dialog_title = "Создание модели" })
         </button>
     </div>
 </div>
@@ -19,8 +19,6 @@
             <tr>
                 <th class="" scope="col">№</th>
                 <th class="col" scope="col">Наименование</th>
-                <th class="" scope="col">Здание</th>
-                <th class="" scope="col">Комментарий</th>
                 <th class="" scope="col"></th>
                 <th class="" scope="col"></th>
             </tr>
@@ -31,15 +29,13 @@
             <tr>
                 <th class="" scope="row">@i</th>
                 <td class="col">@item.Name</td>
-                <td class="">@item.Buildings.Name</td>
-                <td class="">@item.Comment</td>
                 <td class="text-right">
                     @*<span data-feather="edit"></span>*@
-                    @Html.ActionLink("Редактировать", "EditCabinets", "Directories", new { id = item.Id },
+                    @Html.ActionLink("Редактировать", "Edit", "TypeOfClasses", new { id = item.Id },
                                new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
                 </td>
                 <td class="text-right">
-                    @Html.ActionLink("Удалить", "DeleteCabinets", "Directories", new { id = item.Id },
+                    @Html.ActionLink("Удалить", "Delete", "TypeOfClasses", new { id = item.Id },
                                new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
                 </td>
             </tr>

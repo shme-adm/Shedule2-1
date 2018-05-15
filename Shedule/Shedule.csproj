@@ -281,17 +281,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Cabinets.cshtml" />
     <Content Include="Views\Home\Groups.cshtml" />
     <Content Include="Views\Home\Offices.cshtml" />
     <Content Include="Views\Home\Reports.cshtml" />
     <Content Include="Views\Home\Shedule.cshtml" />
-    <Content Include="Views\Home\Subjects.cshtml" />
     <Content Include="Views\Home\Teachers.cshtml" />
-    <Content Include="Views\Home\TypeOfClasses.cshtml" />
     <Content Include="Views\Home\Users.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -318,8 +313,14 @@
     <Content Include="Views\Directories\CreateCabinets.cshtml" />
     <Content Include="Views\Directories\DeleteCabinets.cshtml" />
     <Content Include="Views\Directories\EditCabinets.cshtml" />
-    <Content Include="Views\Subjects\Subjects.cshtml" />
+    <Content Include="Views\Subjects\Index.cshtml" />
     <Content Include="Views\TypeOfClasses\Index.cshtml" />
+    <Content Include="Views\TypeOfClasses\Create.cshtml" />
+    <Content Include="Views\TypeOfClasses\Edit.cshtml" />
+    <Content Include="Views\TypeOfClasses\Delete.cshtml" />
+    <Content Include="Views\Subjects\Create.cshtml" />
+    <Content Include="Views\Subjects\Delete.cshtml" />
+    <Content Include="Views\Subjects\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
