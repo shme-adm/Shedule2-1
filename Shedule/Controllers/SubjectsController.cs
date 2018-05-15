@@ -15,7 +15,7 @@ namespace Shedule.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Предметы";
-            ViewBag.Subjects = db.Subjects;
+            //ViewBag.Subjects = db.Subjects;
             ViewBag.Subjects_groups = db.Subjects_groups;
             return View();
         }
@@ -30,9 +30,9 @@ namespace Shedule.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Subjects subjects)
+        public ActionResult Create(Subjects_groups subjects_groups)
         {
-            db.Subjects.Add(subjects);
+            db.Subjects_groups.Add(subjects_groups);
             db.SaveChanges();
 
             return RedirectToAction("Index");
@@ -45,21 +45,21 @@ namespace Shedule.Controllers
             {
                 return HttpNotFound();
             }
-            var subjects = db.Subjects.Find(id);
-            if (subjects != null)
+            var subjects_groups = db.Subjects_groups.Find(id);
+            if (subjects_groups != null)
             {
                 // SelectList buildings = new SelectList(db.Buildings, "Id", "Name", cabinet.BuildingsId);
                 //ViewBag.Buildings = buildings;
-                return PartialView("Edit", subjects);
+                return PartialView("Edit", subjects_groups);
             }
             return RedirectToAction("Index");
 
         }
 
         [HttpPost]
-        public ActionResult Edit(Subjects subjects)
+        public ActionResult Edit(Subjects_groups subjects_groups)
         {
-            db.Entry(subjects).State = EntityState.Modified;
+            db.Entry(subjects_groups).State = EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Index");
@@ -67,10 +67,10 @@ namespace Shedule.Controllers
 
         public ActionResult Delete(int id)
         {
-            var subjects = db.Subjects.Find(id);
-            if (subjects != null)
+            var subjects_groups = db.Subjects_groups.Find(id);
+            if (subjects_groups != null)
             {
-                return PartialView("Delete", subjects);
+                return PartialView("Delete", subjects_groups);
             }
             return View("Index");
         }
@@ -79,11 +79,11 @@ namespace Shedule.Controllers
         [ActionName("Delete")]
         public ActionResult DeleteRecord(int id)
         {
-            var subjects = db.Subjects.Find(id);
+            var subjects_groups = db.Subjects_groups.Find(id);
 
-            if (subjects != null)
+            if (subjects_groups != null)
             {
-                db.Subjects.Remove(subjects);
+                db.Subjects_groups.Remove(subjects_groups);
                 db.SaveChanges();
             }
             return RedirectToAction("Index");

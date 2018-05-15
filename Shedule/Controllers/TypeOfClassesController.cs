@@ -16,6 +16,7 @@ namespace Shedule.Controllers
         {
             ViewBag.Message = "Типы занятий";
             ViewBag.TypeOfClasses = db.TypeOfClasses;
+            ViewBag.Subjects = db.Subjects;
             return View();
         }
 

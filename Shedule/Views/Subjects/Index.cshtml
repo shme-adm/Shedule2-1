@@ -1,4 +1,4 @@
-﻿@model Subjects
+﻿@model Subjects_groups
 @using Shedule.Models
 @{
     ViewBag.Title = "Предметы";
@@ -25,7 +25,7 @@
             </tr>
         </thead>
         @{ int i = 1;}
-        @foreach (var item in ViewBag.Subjects)
+        @foreach (var item in ViewBag.Subjects_groups)
         {
         <tr>
             <th class="" scope="row">@i</th>
@@ -41,7 +41,18 @@
                new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
             </td>
             @*<td class="col">@item.Units.Count</td>*@
-        </tr>          
+        </tr> 
+            foreach(var item_sb in Model.Subjects)
+            {
+                <tr>
+                    <tr class="" scope="col"></tr>
+                    <tr class="col" scope="col">@item_sb.Name</tr>
+                    <tr class="" scope="col"></tr>
+                    <tr class="" scope="col"></tr>
+                    <tr class="" scope="col"></tr>
+                </tr>
+            }
+        
             i++;
         }
     </table>
