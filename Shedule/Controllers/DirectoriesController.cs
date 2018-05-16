@@ -14,7 +14,7 @@ namespace Shedule.Controllers
         // GET: City
         public ActionResult Cities()
         {
-            ViewBag.Message = "Справочник 'Города'";
+            ViewBag.Message = "Города";
             ViewBag.Cities = db.Cities;
             return View();
         }
@@ -22,7 +22,7 @@ namespace Shedule.Controllers
         //[HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Message = "Справочник 'Города'";
+            //ViewBag.Message = "Справочник 'Города'";
             //ViewBag.Cities = db.Cities;
             return PartialView("Create");
         }
@@ -87,7 +87,7 @@ namespace Shedule.Controllers
 
         public ActionResult Units()
         {
-            ViewBag.Message = "Справочник 'Подразделения'";
+            ViewBag.Message = "Подразделения";
 
             var unit = db.Units.Include(u => u.Cities);
             ViewBag.Units = unit;
@@ -164,7 +164,7 @@ namespace Shedule.Controllers
         //++++++++Buildings-Start++++++++++++
         public ActionResult Buildings()
         {
-            ViewBag.Message = "Справочник 'Здания'";
+            ViewBag.Message = "Здания";
 
             var building = db.Buildings.Include(b => b.Cities).Include(b => b.Units);
             ViewBag.Buildings = building;
@@ -248,7 +248,7 @@ namespace Shedule.Controllers
         //+++++++++++Cabinets-Start+++++++++++++
         public ActionResult Cabinets()
         {
-            ViewBag.Message = "Справочник 'Кабинеты'";
+            ViewBag.Message = "Кабинеты";
 
             var cabinet = db.Cabinets.Include(b => b.Buildings);
             ViewBag.Cabinets = cabinet;
