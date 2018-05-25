@@ -15,7 +15,11 @@ namespace Shedule.Controllers
         public ActionResult Cities()
         {
             ViewBag.Message = "Города";
-            ViewBag.Cities = db.Cities;
+            //ViewBag.Cities = db.Cities;
+            //List<int> list = new List<int>;
+            var c = db.Cities.Include(u => u.Buildings);
+            ViewBag.Cities = c;
+            // ViewBag.Units = c;
             return View();
         }
 
@@ -147,6 +151,7 @@ namespace Shedule.Controllers
             }
             return View("Units");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("DeleteUnits")]
@@ -161,12 +166,13 @@ namespace Shedule.Controllers
             }
             return RedirectToAction("Units");
         }
+
         //++++++++Buildings-Start++++++++++++
         public ActionResult Buildings()
         {
             ViewBag.Message = "Здания";
 
-            var building = db.Buildings.Include(b => b.Cities).Include(b => b.Units);
+            var building = db.Buildings.Include(b => b.Cities).Include(b => b.Units).Include(b => b.Cabinets);
             ViewBag.Buildings = building;
             return View();
         }

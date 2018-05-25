@@ -18,10 +18,11 @@
         <thead>
             <tr>
                 <th class="" scope="col">№</th>
-                <th class="col" scope="col">Наименование</th>
+                <th class="" scope="col">Наименование</th>
                 <th class="" scope="col">Город</th>
                 <th class="" scope="col">Подразделение</th>
                 <th class="" scope="col">Комментарий</th>
+                <th class="" scope="col">Количество кабинетов</th>
                 <th class="" scope="col"></th>
                 <th class="" scope="col"></th>
             </tr>
@@ -31,10 +32,11 @@
         {
         <tr>
             <th class="" scope="row">@i</th>
-            <td class="col">@item.Name</td>
+            <td class="">@item.Name</td>
             <td class="">@item.Cities.Name</td>
             <td class="">@item.Units.Name</td>
             <td class="">@item.Comment</td>
+            <td class="">@item.Cabinets.Count</td>
             <td class="text-right">
                 @*<span data-feather="edit"></span>*@
                 @Html.ActionLink("Редактировать", "EditBuildings", "Directories", new { id = item.Id },

@@ -22,6 +22,14 @@
             @Html.LabelFor(model => model.Comment)
             @Html.EditorFor(model => model.Comment)
         </div>
+        <div>
+            @Html.LabelFor(model => model.Lecture)
+            @Html.CheckBoxFor(model => model.Lecture)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Practice)
+            @Html.CheckBoxFor(model => model.Practice)
+        </div>
         <p><input type="submit" value="Добавить" /></p>
 }
     </div>

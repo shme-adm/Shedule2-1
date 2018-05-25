@@ -19,7 +19,6 @@ namespace Shedule.Models
             Units = new List<Units>();
             Buildings = new List<Buildings>();
         }
-        
-        
+                
     }
 }

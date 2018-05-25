@@ -16,6 +16,12 @@ namespace Shedule.Models
         [Display(Name = "Комментарий")]
         public string Comment { get; set; }
 
+        [Display(Name = "Лекция")]
+        public bool Lecture { get; set; }
+
+        [Display(Name = "Практика")]
+        public bool Practice { get; set; }
+
         [Display(Name = "Здание")]
         public int? BuildingsId { get; set; }
         public Buildings Buildings { get; set; }

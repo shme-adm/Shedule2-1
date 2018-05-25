@@ -27,21 +27,23 @@
         @{ int i = 1;}
         @foreach (var item in ViewBag.Cities)
         {
-        <tr>
-            <th class="" scope="row">@i</th>
-            <td class="col">@item.Name</td>
-            <td class="text-right">
-                @*<span data-feather="edit"></span>*@
-                @Html.ActionLink("Редактировать", "Edit", "Directories", new { id = item.Id },
-             new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
-            </td>
-            <td class="text-right">
-                @Html.ActionLink("Удалить", "Delete", "Directories", new { id = item.Id },
-             new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
-            </td>
-            <td class="col">@item.Units.Count</td>
-        </tr>
+            //int count = item.Units.Count;
+            <tr>
+                <th class="" scope="row">@i</th>
+                <td class="col">@item.Name</td>
+                <td class="text-right">
+                    @*<span data-feather="edit"></span>*@
+                    @Html.ActionLink("Редактировать", "Edit", "Directories", new { id = item.Id },
+                 new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
+                </td>
+                <td class="text-right">
+                    @Html.ActionLink("Удалить", "Delete", "Directories", new { id = item.Id },
+                 new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
+                </td>
+                <td class="col">@item.Buildings.Count</td>
+            </tr>
             i++;
+            
         }
     </table>   
     

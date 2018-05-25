@@ -19,8 +19,10 @@
             <tr>
                 <th class="" scope="col">№</th>
                 <th class="col" scope="col">Наименование</th>
-                <th class="" scope="col">Здание</th>            
+                <th class="" scope="col">Здание</th>
                 <th class="" scope="col">Комментарий</th>
+                <th class="" scope="col">Лекция</th>
+                <th class="" scope="col">Практика</th>
                 <th class="" scope="col"></th>
                 <th class="" scope="col"></th>
             </tr>
@@ -33,6 +35,8 @@
                 <td class="col">@item.Name</td>
                 <td class="">@item.Buildings.Name</td>
                 <td class="">@item.Comment</td>
+                <td class="">@item.Lecture</td>
+                <td class="">@item.Practice</td>
                 <td class="text-right">
                     @*<span data-feather="edit"></span>*@
                     @Html.ActionLink("Редактировать", "EditCabinets", "Directories", new { id = item.Id },
