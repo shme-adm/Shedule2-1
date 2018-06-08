@@ -1,5 +1,6 @@
 body {
-  font-size: .875rem;
+    font-size: .875rem;
+    line-height: 1.2;
 }
 
 .feather {
@@ -7,6 +8,15 @@ body {
   height: 16px;
   vertical-align: text-bottom;
 }
+
+table{
+
+}
+
+.table th,.table td {
+    padding: 0.2rem;
+}
+
 
 /*
  * Sidebar
@@ -46,15 +56,18 @@ body {
 .sidebar .nav-link .feather {
   margin-right: 4px;
   color: #999;
+  /*color: #87CEFA;*/
 }
 
 .sidebar .nav-link.active {
-  color: #007bff;
+  /*color: #007bff;*/
+  color:#4169E0;
 }
 
 .sidebar .nav-link:hover .feather,
 .sidebar .nav-link.active .feather {
-  color: inherit;
+  /*color: inherit;*/
+  color:#4169E0;
 }
 
 .sidebar-heading {
@@ -73,13 +86,18 @@ body {
 /*
  * Navbar
  */
+.navbar {
+    background: linear-gradient(to right, #87CEFA, #4169E0);
+}
 
 .navbar-brand {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: 1rem;
-  background-color: rgba(0, 0, 0, .25);
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 1rem;
+    font-weight:600;
+    /*background-color: rgba(0, 0, 0, .25);*/
+    /*background: linear-gradient(to right, #FFFFFF, #4169E0);*/
+    /*box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);*/
 }
 
 .navbar .form-control {
@@ -105,3 +123,4 @@ body {
 
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+

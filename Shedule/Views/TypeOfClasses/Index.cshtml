@@ -18,7 +18,7 @@
         <thead>
             <tr>
                 <th class="" scope="col">№</th>
-                <th class="col" scope="col">Наименование</th>
+                <th class="" scope="col">Наименование</th>
                 <th class="" scope="col"></th>
                 <th class="" scope="col"></th>
             </tr>
@@ -28,7 +28,7 @@
         {
             <tr>
                 <th class="" scope="row">@i</th>
-                <td class="col">@item.Name</td>
+                <td class="">@item.Name</td>
                 <td class="text-right">
                     @*<span data-feather="edit"></span>*@
                     @Html.ActionLink("Редактировать", "Edit", "TypeOfClasses", new { id = item.Id },
