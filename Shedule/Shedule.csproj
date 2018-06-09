@@ -321,6 +321,7 @@
     <Content Include="Views\Subjects\Create.cshtml" />
     <Content Include="Views\Subjects\Delete.cshtml" />
     <Content Include="Views\Subjects\Edit.cshtml" />
+    <Content Include="Views\Subjects\Create_subject.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

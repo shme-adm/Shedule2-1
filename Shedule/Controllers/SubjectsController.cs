@@ -16,7 +16,8 @@ namespace Shedule.Controllers
         {
             ViewBag.Message = "Предметы";
             //ViewBag.Subjects = db.Subjects;
-            ViewBag.Subjects_groups = db.Subjects_groups;
+            var s = db.Subjects_groups.Include(u=>u.Subjects);
+            ViewBag.Subjects_groups = s;
             return View();
         }
 
@@ -33,6 +34,24 @@ namespace Shedule.Controllers
         public ActionResult Create(Subjects_groups subjects_groups)
         {
             db.Subjects_groups.Add(subjects_groups);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Create_subject()
+        {
+            //SelectList buildings = new SelectList(db.Buildings, "Id", "Name");
+            //ViewBag.Buildings = buildings;
+            //ViewBag.Message = ""
+            return PartialView("Create_subject");
+        }
+
+        [HttpPost]
+        public ActionResult Create_subject(Subjects subjects)
+        {
+            db.Subjects.Add(subjects);
             db.SaveChanges();
 
             return RedirectToAction("Index");
