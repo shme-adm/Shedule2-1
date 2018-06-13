@@ -1,0 +1,38 @@
+﻿@model Shedule.Models.Teachers
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4>Редактирование записи</h4>
+        <button class="close" data-dismiss="modal" area-hidden="true">x</button>
+    </div>
+    <div class="modal-body">
+        @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(с => с.Id)
+        
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <p>@Html.EditorFor(model => model.Name)</p>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <p>@Html.EditorFor(model => model.Surname)</p>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <p>@Html.EditorFor(model => model.Middlename)</p>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <p>@Html.TextAreaFor(model => model.Comment)</p>
+        </div>
+        <div>
+        <input type="submit" class="btn btn-outline-success" value="Сохранить" />
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Отмена</button>
+        </div> 
+}
+    </div>
+</div>
+
+

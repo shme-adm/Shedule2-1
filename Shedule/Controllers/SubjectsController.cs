@@ -16,7 +16,7 @@ namespace Shedule.Controllers
         {
             ViewBag.Message = "Предметы";
             //ViewBag.Subjects = db.Subjects;
-            var s = db.Subjects_groups.Include(u=>u.Subjects);
+            var s = db.Subjects_groups.Include(sg=>sg.Subjects);
             ViewBag.Subjects_groups = s;
             return View();
         }
@@ -42,15 +42,32 @@ namespace Shedule.Controllers
         [HttpGet]
         public ActionResult Create_subject()
         {
+
+            SelectList subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
+           // var subjects_groups = db.Subjects_groups.Find(id);
+            ViewBag.Subjects_groups = subjects_groups;
             //SelectList buildings = new SelectList(db.Buildings, "Id", "Name");
             //ViewBag.Buildings = buildings;
             //ViewBag.Message = ""
-            return PartialView("Create_subject");
+            //if (id == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //var subjects_groups = db.Subjects_groups.Find(id);
+            //if (subjects_groups != null)
+            //{
+            // SelectList buildings = new SelectList(db.Buildings, "Id", "Name", cabinet.BuildingsId);
+            //ViewBag.Buildings = buildings;
+            return PartialView("Create_subject"/*, subjects_groups*/);
+            //}
+            //return RedirectToAction("Index");
+            //return PartialView("Create_subject");
         }
 
         [HttpPost]
-        public ActionResult Create_subject(Subjects subjects)
+        public ActionResult Create_subject(Subjects subjects/*, Subjects_groups subjects_groups*/)
         {
+            //subjects.Subjects_groupsId = subjects_groups.Id;
             db.Subjects.Add(subjects);
             db.SaveChanges();
 

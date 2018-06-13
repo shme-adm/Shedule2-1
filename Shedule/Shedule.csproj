@@ -149,6 +149,7 @@
     <Compile Include="Controllers\DirectoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SubjectsController.cs" />
+    <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Controllers\TypeOfClassesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -159,6 +160,7 @@
     <Compile Include="Models\ShedulerContext.cs" />
     <Compile Include="Models\Subjects.cs" />
     <Compile Include="Models\Subjects_groups.cs" />
+    <Compile Include="Models\Teachers.cs" />
     <Compile Include="Models\TypeOfClasses.cs" />
     <Compile Include="Models\Units.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -222,7 +224,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="iron-man.svg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -322,6 +323,10 @@
     <Content Include="Views\Subjects\Delete.cshtml" />
     <Content Include="Views\Subjects\Edit.cshtml" />
     <Content Include="Views\Subjects\Create_subject.cshtml" />
+    <Content Include="Views\Teachers\Index.cshtml" />
+    <Content Include="Views\Teachers\Create.cshtml" />
+    <Content Include="Views\Teachers\Delete.cshtml" />
+    <Content Include="Views\Teachers\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

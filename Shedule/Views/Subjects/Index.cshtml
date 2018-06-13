@@ -31,7 +31,7 @@
             <tr class="d-flex">
                 <th class="col-1" scope="row">@i</th>
                 <td class="col-8" scope="row">@item.Name</td>
-                <th class="col-1">@Html.ActionLink("Добавить тему", "Create_subject", "Subjects", new { }, new { @class = "viewDialog", data_dialog_title = "Добавить тему" })</th>
+                <th class="col-1">@Html.ActionLink("Добавить тему", "Create_subject", "Subjects", new { id = item.Id }, new { @class = "viewDialog", data_dialog_title = "Добавить тему" })</th>
                 <td class="text-right col-1">
                     @*<span data-feather="edit"></span>*@
                     @Html.ActionLink("Редактировать", "Edit", "Subjects", new { id = item.Id },
