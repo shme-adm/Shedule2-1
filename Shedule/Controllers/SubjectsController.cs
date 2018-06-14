@@ -124,5 +124,56 @@ namespace Shedule.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Edit_subject(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            var subjects = db.Subjects.Find(id);
+            if (subjects != null)
+            {
+                // SelectList buildings = new SelectList(db.Buildings, "Id", "Name", cabinet.BuildingsId);
+                //ViewBag.Buildings = buildings;
+                return PartialView("Edit_subject", subjects);
+            }
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpPost]
+        public ActionResult Edit_subject(Subjects subjects)
+        {
+            db.Entry(subjects).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete_subject(int id)
+        {
+            var subjects = db.Subjects.Find(id);
+            if (subjects != null)
+            {
+                return PartialView("Delete_subject", subjects);
+            }
+            return View("Index");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete_subject")]
+        public ActionResult DeleteRecord_subject(int id)
+        {
+            var subjects = db.Subjects.Find(id);
+
+            if (subjects != null)
+            {
+                db.Subjects.Remove(subjects);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

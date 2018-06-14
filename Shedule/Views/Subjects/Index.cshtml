@@ -43,16 +43,30 @@
                 </td>
                 @*<td class="col">@item.Units.Count</td>*@
             </tr> 
-                foreach(var item_sb in item.Subjects)
-                {
-                    <tr class="d-flex">
-                        <td class="col-1"></td>
-                        <td class="col-8">@item_sb.Name</td>
-                        <td class="col-1"></td>
-                        <td class="col-1"></td>
-                        <td class="col-1"></td>
-                    </tr>
-                }
+            <tr class="d-flex">
+                <th class="col-1"></th>
+                <th class="col-8">Тема</th>
+                <th class="col-1"></th>
+                <th class="col-1"></th>
+                <th class="col-1"></th>
+            </tr>
+            foreach(var item_sb in item.Subjects)
+             {
+            <tr class="d-flex">
+                <td class="col-1"></td>
+                <td class="col-8">@item_sb.Name</td>
+                <td class="col-1"></td>
+                <td class="text-right col-1">
+                    @*<span data-feather="edit"></span>*@
+                    @Html.ActionLink("Редактировать", "Edit_subject", "Subjects", new { id = item.Id },
+                     new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
+                </td>
+                <td class="text-right col-1">
+                    @Html.ActionLink("Удалить", "Delete_subject", "Subjects", new { id = item.Id },
+                    new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
+                </td>
+            </tr>
+             }
         
                 i++;
             }

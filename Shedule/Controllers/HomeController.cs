@@ -15,71 +15,58 @@ namespace Shedule.Controllers
         {
             return View("Index");
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
         public ActionResult Shedule()
         {
-            ViewBag.Message = "Здесь будет расписание";
+            ViewBag.Message = "Ведутся работы";
 
             return View();
         }
         public ActionResult Reports()
         {
-            ViewBag.Message = "Здесь будут отчеты";
+            ViewBag.Message = "Ведутся работы";
 
             return View();
         }
         public ActionResult Subjects()
         {
-            ViewBag.Message = "Здесь будет справочник по предметам";
+            ViewBag.Message = "Ведутся работы";
 
             return View();
         }
         public ActionResult TypeOfClasses()
         {
-            ViewBag.Message = "Здесь будет справочник по типам занятий";
+            ViewBag.Message = "Ведутся работы";
 
             return View();
         }
         public ActionResult Cabinets()
         {
-            ViewBag.Message = "Здесь будет спрвочник по кабинетам";
+            ViewBag.Message = "Ведутся работы";
 
             return View();
         }
         public ActionResult Groups()
         {
-            ViewBag.Message = "Здесь будет справочник по группам";
+            ViewBag.Message = "Ведутся работы";
 
             return View();
         }
         public ActionResult Offices()
         {
-            ViewBag.Message = "Здесь будет справочник по отделениям";
+            ViewBag.Message = "Ведутся работы";
 
             return View();
         }
         public ActionResult Users()
         {
-            ViewBag.Message = "Здесь будет справочник по пользователям";
+            ViewBag.Message = "Ведутся работы";
 
             return View();
         }
         public ActionResult Teachers()
         {
-            ViewBag.Message = "Здесь будет справочник по преподавателям";
+            ViewBag.Message = "Ведутся работы";
 
             return View();
         }

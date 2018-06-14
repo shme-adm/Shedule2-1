@@ -21,15 +21,19 @@
                 <th class="" scope="col">Имя</th>
                 <th class="" scope="col">Фамилия</th>
                 <th class="" scope="col">Отчество</th>
-                <th class="" scope="col">Комментарий</th>
+                <th class="" scope="col">Комментарий</th>  
+                <th class="" scope="col">Подразделение</th>              
+                <th class="" scope="col">Штатный</th>                
                 <th class="" scope="col">Тарификация</th>
-                <th class="" scope="col">Штатный</th>
-                <th class="" scope="col">Подразделение</th>
                 <th class="" scope="col"></th>
                 <th class="" scope="col"></th>
             </tr>
         </thead>
-        @{ int i = 1;}
+        @{ 
+            int i = 1;
+            var yes = Html.Raw("<span data-feather=check color=green></ span >");
+            var no = Html.Raw("<span data-feather=minus color=red></ span >");
+         }
         @foreach (var item in ViewBag.Teachers)
         {
         <tr>
@@ -39,7 +43,7 @@
             <td class="">@item.Middlename</td>
             <td class="">@item.Comment</td>
             <td class=""></td>
-            <td class=""></td>
+            <td class="">@if (item.Staff) {@yes} else {@no}</td>            
             <td class=""></td>
             <td class="text-right">
                 @*<span data-feather="edit"></span>*@

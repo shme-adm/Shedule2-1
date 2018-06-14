@@ -1,0 +1,21 @@
+﻿@*@model Shedule.Models.Cities*@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4>Удалить данную запись?</h4>
+        <button class="close" data-dismiss="modal" area-hidden="true">x</button>
+    </div>
+    <div class="modal-body">
+        @*<div>
+                <p>Город: @Html.DisplayFor(c => c.Name)</p>
+            </div>*@
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <p><input type="submit" value="Удалить" /></p>
+
+        }
+    </div>
+</div>
+
