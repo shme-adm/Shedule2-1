@@ -15,8 +15,8 @@ namespace Shedule.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Типы занятий";
-            ViewBag.TypeOfClasses = db.TypeOfClasses;
-            ViewBag.Subjects = db.Subjects;
+            ViewBag.TypeOfClasses = db.TypeOfClasses.OrderBy(t=>t.Name);
+            //ViewBag.Subjects = db.Subjects;
             return View();
         }
 

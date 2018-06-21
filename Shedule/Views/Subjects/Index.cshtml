@@ -13,7 +13,7 @@
         </button>
     </div>
 </div>
-<div class="table-responsive">
+@*<div class="table-responsive">
     <table class="table table-striped table-light">
         <thead>
             <tr class="d-flex">
@@ -23,56 +23,134 @@
                 <th class="col-1" scope="col"></th>
                 <th class="col-1" scope="col"></th>
             </tr>
-        </thead>
-        <tbody>
+        </thead>*@
+        @*<tbody>
             @{ int i = 1;}
             @foreach (var item in ViewBag.Subjects_groups)
             {
-            <tr class="d-flex">
-                <th class="col-1" scope="row">@i</th>
-                <td class="col-8" scope="row">@item.Name</td>
-                <th class="col-1">@Html.ActionLink("Добавить тему", "Create_subject", "Subjects", new { id = item.Id }, new { @class = "viewDialog", data_dialog_title = "Добавить тему" })</th>
-                <td class="text-right col-1">
-                    @*<span data-feather="edit"></span>*@
-                    @Html.ActionLink("Редактировать", "Edit", "Subjects", new { id = item.Id },
-                   new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
-                </td>
-                <td class="text-right col-1">
-                    @Html.ActionLink("Удалить", "Delete", "Subjects", new { id = item.Id },
-                   new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
-                </td>
-                @*<td class="col">@item.Units.Count</td>*@
-            </tr> 
-            <tr class="d-flex">
-                <th class="col-1"></th>
-                <th class="col-8">Тема</th>
-                <th class="col-1"></th>
-                <th class="col-1"></th>
-                <th class="col-1"></th>
-            </tr>
-            foreach(var item_sb in item.Subjects)
-             {
-            <tr class="d-flex">
-                <td class="col-1"></td>
-                <td class="col-8">@item_sb.Name</td>
-                <td class="col-1"></td>
-                <td class="text-right col-1">
-                    @*<span data-feather="edit"></span>*@
-                    @Html.ActionLink("Редактировать", "Edit_subject", "Subjects", new { id = item.Id },
-                     new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
-                </td>
-                <td class="text-right col-1">
-                    @Html.ActionLink("Удалить", "Delete_subject", "Subjects", new { id = item.Id },
-                    new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
-                </td>
-            </tr>
-             }
-        
+                string s = "collapse" + item.Id; string sc = "#collapse" + item.Id;
+                
+                    <tr class="d-flex clickable" data-toggle="collapse" data-target="@sc" aria-expanded="true" aria-controls="@s">
+                    <th class="col-1" scope="row">@i</th>
+                    <td class="col-7" scope="row">@item.Name</td>
+                    <td class="col-2">@Html.ActionLink("Добавить тему", "Create_subject", "Subjects", new { id = item.Id }, new { @class = "viewDialog", data_dialog_title = "Добавить тему" })</td>
+                    <td class="text-right col-1">
+                        @*<span data-feather="edit"></span>*@
+                    @*    @Html.ActionLink("Редактировать", "Edit", "Subjects", new { id = item.Id },
+                            new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
+                    </td>*@
+                @*    <td class="text-right col-1">
+                        @Html.ActionLink("Удалить", "Delete", "Subjects", new { id = item.Id },
+                            new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
+                    </td>
+                    @*<td class="col">@item.Units.Count</td>*@
+                @*</tr>
+
+                <tr class="d-flex">
+                    <th class="col-1"></th>
+                    <th class="col-8">Тема</th>
+                    <th class="col-1"></th>
+                    <th class="col-1"></th>
+                    <th class="col-1"></th>
+                </tr>*@
+                
+                @*foreach (var item_sb in item.Subjects)
+                {
+                    <tr class="d-flex">
+                        <td class="col-1"></td>
+                        <td class="col-8">@item_sb.Name</td>
+                        <td class="col-1"></td>
+                        <td class="text-right col-1">
+                            @*<span data-feather="edit"></span>*@
+                       @*     @Html.ActionLink("Редактировать", "Edit_subject", "Subjects", new { id = item_sb.Id },
+                                  new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
+                        </td>
+                        <td class="text-right col-1">
+                            @Html.ActionLink("Удалить", "Delete_subject", "Subjects", new { id = item_sb.Id },
+                                 new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
+                        </td>
+                    </tr>
+                }
+
                 i++;
+                    <tr></tr>
             }
+            
         </tbody>
     </table>
+</div>*@
+<div id="">
+    @{ int i = 1; int j = 1;}
+    @foreach (var item in ViewBag.Subjects_groups)
+    {
+        string s = "collapse" + item.Id; string sc = "#collapse" + item.Id;
+
+        <div class="card">
+            <div class="card-header" id="@item.Id">
+                <table class="table table-responsive-sm nn">
+                    <tr class="d-flex">
+                        <td class="col-1">@i</td>
+                        <td class="col-6">
+                            <a data-toggle="collapse" data-target="@sc" aria-expanded="true" aria-controls="@s">
+                                @item.Name
+                            </a>
+                        </td>
+                        <td class="col-2">@Html.ActionLink("Добавить элемент", "Create_subject", "Subjects", new { id = item.Id }, new { @class = "viewDialog", data_dialog_title = "Добавить тему" })</td>
+                        <td class="text-right col-2">
+                            @*<span data-feather="edit"></span>*@
+                            @Html.ActionLink("Редактировать", "Edit", "Subjects", new { id = item.Id },
+                      new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
+                        </td>
+                        <td class="text-right col-1">
+                            @Html.ActionLink("Удалить", "Delete", "Subjects", new { id = item.Id },
+                      new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="@s" class="collapse show" aria-labelledby="@item.Id" data-parent="#accordion">
+                <div class="card-body table-responsive">
+                    @*@foreach (var item_sb in item.Subjects)
+                        {*@
+                    @*<p>@item_sb.Name</p>*@
 
 
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="d-flex">
+                                <th class="col-1">№</th>
+                                <th class="col-7">Тема</th>
+                                <th class="col-1"></th>
+                                <th class="col-2"></th>
+                                <th class="col-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item_sb in item.Subjects)
+                            {
+                                
+                                <tr class="d-flex">
+                                    <td class="col-1">@i.@j</td>
+                                    <td class="col-7">@item_sb.Name</td>
+                                    <td class="col-1"></td>
+                                    <td class="text-right col-2">
+                                        @*<span data-feather="edit"></span>*@
+                                        @Html.ActionLink("Редактировать", "Edit_subject", "Subjects", new { id = item_sb.Id },
+new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
+                                    </td>
+                                    <td class="text-right col-1">
+                                        @Html.ActionLink("Удалить", "Delete_subject", "Subjects", new { id = item_sb.Id },
+new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
+                                    </td>
+                                </tr>
+                                j++;
+                            }
+                        </tbody>
+                    </table>
+                    @*}*@
+                </div>
+            </div>
+        </div>
+        i++; j = 1;
+    }
 </div>
-

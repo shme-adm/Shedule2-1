@@ -9,9 +9,11 @@ namespace Shedule.Models
     public class Subjects
     {
         public int Id { get; set; }
+        [Display(Name = "Наименование")]
         public string Name { get; set; }
 
         //[Display(Name = "")]
+        [Display(Name = "Предмет")]
         public int? Subjects_groupsId { get; set; }
         public Subjects_groups Subjects_groups { get; set; }
     }

@@ -1,9 +1,9 @@
 ﻿@model Shedule.Models.Subjects
 
 <div class="modal-content">
-    <div class="modal-header">
+    <div class="modal-header d-flex justify-content-center">
         <h4>Новая запись</h4>
-        <button class="close" data-dismiss="modal" area-hidden="true">x</button>
+        @*<button class="close" data-dismiss="modal" area-hidden="true">x</button>*@
     </div>
     <div class="modal-body">
         @using (Html.BeginForm())
@@ -12,13 +12,16 @@
 
             <div>
                 @Html.LabelFor(model => model.Name)
-                <p>@Html.EditorFor(model => model.Name)</p>
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div>
                 @Html.LabelFor(model => model.Subjects_groupsId)
-                @Html.DropDownListFor(model => model.Subjects_groupsId, ViewBag.Subjects_groups as SelectList)
+                @Html.DropDownListFor(model => model.Subjects_groupsId, ViewBag.Subjects_groups as SelectList, new { @class = "form-control" } )
             </div>
-            <p><input type="submit" value="Добавить" /></p>
+            <div class="d-flex justify-content">
+                <input type="submit" class="btn btn-outline-success" value="Создать" />
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Отмена</button>
+            </div>
         }
     </div>
 </div>

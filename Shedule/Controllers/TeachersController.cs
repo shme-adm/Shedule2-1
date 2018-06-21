@@ -15,7 +15,7 @@ namespace Shedule.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Преподаватели";
-            ViewBag.Teachers = db.Teachers;
+            ViewBag.Teachers = db.Teachers.OrderBy(t=>t.Surname);
            // var s = db.Subjects_groups.Include(sg => sg.Subjects);
             //ViewBag.Subjects_groups = s;
             return View();

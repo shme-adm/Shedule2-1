@@ -9,13 +9,23 @@ body {
   vertical-align: text-bottom;
 }
 
-table{
+/*table{
 
+}*/
+.nn {
+    margin-bottom: 0rem;    
+}
+.nn td{
+    border-top: hidden;
 }
 
 .table th,.table td {
     padding: 0.2rem;
 }
+
+/*table .collapse.in {
+    display: table-row;
+}*/
 
 
 /*

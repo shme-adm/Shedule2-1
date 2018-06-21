@@ -18,7 +18,7 @@ namespace Shedule.Controllers
             //ViewBag.Cities = db.Cities;
             //List<int> list = new List<int>;
             var c = db.Cities.Include(u => u.Buildings);
-            ViewBag.Cities = c;
+            ViewBag.Cities = c.OrderBy(s=>s.Name);
             // ViewBag.Units = c;
             return View();
         }
@@ -94,7 +94,7 @@ namespace Shedule.Controllers
             ViewBag.Message = "Подразделения";
 
             var unit = db.Units.Include(u => u.Cities);
-            ViewBag.Units = unit;
+            ViewBag.Units = unit.OrderBy(u=>u.Name);
             return View();
         }
 
@@ -173,7 +173,7 @@ namespace Shedule.Controllers
             ViewBag.Message = "Здания";
 
             var building = db.Buildings.Include(b => b.Cities).Include(b => b.Units).Include(b => b.Cabinets);
-            ViewBag.Buildings = building;
+            ViewBag.Buildings = building.OrderBy(b=>b.Name);
             return View();
         }
 
@@ -257,7 +257,7 @@ namespace Shedule.Controllers
             ViewBag.Message = "Кабинеты";
 
             var cabinet = db.Cabinets.Include(b => b.Buildings);
-            ViewBag.Cabinets = cabinet;
+            ViewBag.Cabinets = cabinet.OrderBy(c=>c.Name);
             return View();
         }
 

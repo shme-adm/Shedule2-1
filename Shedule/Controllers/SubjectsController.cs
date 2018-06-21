@@ -16,8 +16,8 @@ namespace Shedule.Controllers
         {
             ViewBag.Message = "Предметы";
             //ViewBag.Subjects = db.Subjects;
-            var s = db.Subjects_groups.Include(sg=>sg.Subjects);
-            ViewBag.Subjects_groups = s;
+            var subject = db.Subjects_groups.Include(sg=>sg.Subjects);
+            ViewBag.Subjects_groups = subject.OrderBy(sg=>sg.Name);
             return View();
         }
 
@@ -128,6 +128,8 @@ namespace Shedule.Controllers
         [HttpGet]
         public ActionResult Edit_subject(int? id)
         {
+            SelectList subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
+            ViewBag.Subjects_groups = subjects_groups;
             if (id == null)
             {
                 return HttpNotFound();
