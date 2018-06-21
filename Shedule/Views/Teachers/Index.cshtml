@@ -18,12 +18,12 @@
         <thead>
             <tr>
                 <th class="" scope="col">№</th>
-                <th class="" scope="col">Имя</th>
                 <th class="" scope="col">Фамилия</th>
+                <th class="" scope="col">Имя</th>
                 <th class="" scope="col">Отчество</th>
-                <th class="" scope="col">Комментарий</th>  
-                <th class="" scope="col">Подразделение</th>              
-                <th class="" scope="col">Штатный</th>                
+                <th class="" scope="col">Комментарий</th>
+                <th class="" scope="col">Подразделение</th>
+                <th class="" scope="col">Штатный</th>
                 <th class="" scope="col">Тарификация</th>
                 <th class="" scope="col"></th>
                 <th class="" scope="col"></th>
@@ -37,9 +37,9 @@
         @foreach (var item in ViewBag.Teachers)
         {
         <tr>
-            <th class="" scope="row">@i</th>
-            <td class="">@item.Name</td>
+            <th class="" scope="row">@i</th>            
             <td class="">@item.Surname</td>
+            <td class="">@item.Name</td>
             <td class="">@item.Middlename</td>
             <td class="">@item.Comment</td>
             <td class=""></td>

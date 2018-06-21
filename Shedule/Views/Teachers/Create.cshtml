@@ -9,14 +9,14 @@
         @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
-        <div>
-            @Html.LabelFor(model => model.Name)
-            <p>@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })</p>
-        </div>
+        
         <div>
             @Html.LabelFor(model => model.Surname)
             <p>@Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })</p>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <p>@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })</p>
         </div>
         <div>
             @Html.LabelFor(model => model.Middlename)

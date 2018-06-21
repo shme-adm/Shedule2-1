@@ -1,9 +1,9 @@
 ﻿@*@model Shedule.Models.Cities*@
 
 <div class="modal-content">
-    <div class="modal-header">
+    <div class="modal-header d-flex justify-content-center">
         <h4>Вы действительно хотите удалить данную запись?</h4>
-        <button class="close" data-dismiss="modal" area-hidden="true">x</button>
+        @*<button class="close" data-dismiss="modal" area-hidden="true">x</button>*@
     </div>
     <div class="modal-body">
         @*<div>
@@ -13,7 +13,10 @@
     {
         @Html.AntiForgeryToken()
 
-        <p><input type="submit" value="Удалить" /></p>
+        <div class="d-flex justify-content">
+            <input type="submit" class="btn btn-outline-success" value="Удалить" />
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Отмена</button>
+        </div>
         
 }
     </div>

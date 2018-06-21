@@ -1,7 +1,7 @@
 ﻿@model Shedule.Models.Cabinets
 
 <div class="modal-content">
-    <div class="modal-header">
+    <div class="modal-header d-flex justify-content-center">
         <h4>Новая запись</h4>
         <button class="close" data-dismiss="modal" area-hidden="true">x</button>
     </div>
@@ -12,25 +12,28 @@
 
         <div>
             @Html.LabelFor(model => model.Name)
-            @Html.EditorFor(model => model.Name)
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div>
             @Html.LabelFor(model => model.BuildingsId)
-            @Html.DropDownListFor(model => model.BuildingsId, ViewBag.Buildings as SelectList)
+            @Html.DropDownListFor(model => model.BuildingsId, ViewBag.Buildings as SelectList, new { @class = "form-control" })
         </div>
         <div>
             @Html.LabelFor(model => model.Comment)
-            @Html.EditorFor(model => model.Comment)
+            @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div>
             @Html.LabelFor(model => model.Lecture)
-            @Html.CheckBoxFor(model => model.Lecture)
+            @Html.CheckBoxFor(model => model.Lecture, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div>
             @Html.LabelFor(model => model.Practice)
-            @Html.CheckBoxFor(model => model.Practice)
+            @Html.CheckBoxFor(model => model.Practice, new { htmlAttributes = new { @class = "form-control" } })
         </div>
-        <p><input type="submit" value="Добавить" /></p>
+        <div class="d-flex justify-content">
+            <input type="submit" class="btn btn-outline-success" value="Создать" />
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Отмена</button>
+        </div>
 }
     </div>
 </div>
