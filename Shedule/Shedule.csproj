@@ -88,6 +88,12 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -157,9 +163,13 @@
     <Compile Include="Models\Buildings.cs" />
     <Compile Include="Models\Cabinets.cs" />
     <Compile Include="Models\Cities.cs" />
+    <Compile Include="Models\Cycles.cs" />
+    <Compile Include="Models\Groups.cs" />
+    <Compile Include="Models\HoursForLearning.cs" />
     <Compile Include="Models\ShedulerContext.cs" />
     <Compile Include="Models\Subjects.cs" />
     <Compile Include="Models\Subjects_groups.cs" />
+    <Compile Include="Models\Tariffing.cs" />
     <Compile Include="Models\Teachers.cs" />
     <Compile Include="Models\TypeOfClasses.cs" />
     <Compile Include="Models\Units.cs" />
@@ -177,6 +187,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dashboard.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
