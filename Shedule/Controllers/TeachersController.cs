@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Shedule.Models;
 using System.Data.Entity;
+using PagedList;
 
 namespace Shedule.Controllers
 {
@@ -12,13 +13,27 @@ namespace Shedule.Controllers
     {
         ShedulerContext db = new ShedulerContext();
         // GET: Teachers
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.Message = "Преподаватели";
-            ViewBag.Teachers = db.Teachers.OrderBy(t=>t.Surname);
-           // var s = db.Subjects_groups.Include(sg => sg.Subjects);
+            ViewBag.CurrentSort = sortOrder;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            //ViewBag.Teachers = db.Teachers.OrderBy(t=>t.Surname);
+            // var s = db.Subjects_groups.Include(sg => sg.Subjects);
+            var teacher = db.Teachers.OrderBy(t => t.Surname);
             //ViewBag.Subjects_groups = s;
-            return View();
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(teacher.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]

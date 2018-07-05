@@ -340,6 +340,10 @@
     <Content Include="Views\Teachers\Edit.cshtml" />
     <Content Include="Views\Subjects\Delete_subject.cshtml" />
     <Content Include="Views\Subjects\Edit_subject.cshtml" />
+    <Content Include="Views\Cycles\Index.cshtml" />
+    <Content Include="Views\Cycles\Edit.cshtml" />
+    <Content Include="Views\Cycles\Create.cshtml" />
+    <Content Include="Views\Cycles\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

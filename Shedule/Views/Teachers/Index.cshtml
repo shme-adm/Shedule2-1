@@ -1,5 +1,10 @@
-﻿@model Teachers
-@using Shedule.Models
+﻿@*@model Teachers
+    @using Shedule.Models*@
+
+@model PagedList.IPagedList<Shedule.Models.Teachers>
+@using PagedList.Mvc
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Преподаватели";
 }
@@ -29,34 +34,43 @@
                 <th class="" scope="col"></th>
             </tr>
         </thead>
-        @{ 
+        @{
             int i = 1;
             var yes = Html.Raw("<span data-feather=check color=green></ span >");
             var no = Html.Raw("<span data-feather=minus color=red></ span >");
-         }
-        @foreach (var item in ViewBag.Teachers)
+        }
+        @foreach (var item in Model)
         {
-        <tr>
-            <th class="" scope="row">@i</th>            
-            <td class="">@item.Surname</td>
-            <td class="">@item.Name</td>
-            <td class="">@item.Middlename</td>
-            <td class="">@item.Comment</td>
-            <td class=""></td>
-            <td class="">@if (item.Staff) {@yes} else {@no}</td>            
+            <tr>
+                <th class="" scope="row">@i</th>
+                <td class="">@item.Surname</td>
+                <td class="">@item.Name</td>
+                <td class="">@item.Middlename</td>
+                <td class="">@item.Comment</td>
+                <td class=""></td>
+                <td class="">
+                    @if (item.Staff)
+                    {@yes}
+                else
+                {@no}
+            </td>
             <td class=""></td>
             <td class="text-right">
                 @*<span data-feather="edit"></span>*@
                 @Html.ActionLink("Редактировать", "Edit", "Teachers", new { id = item.Id },
-                 new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
+                           new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
             </td>
             <td class="text-right">
                 @Html.ActionLink("Удалить", "Delete", "Teachers", new { id = item.Id },
-                 new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
+                           new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
             </td>
         </tr>
-            i++;
-        }
+        i++;
+    }
     </table>
+    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
 

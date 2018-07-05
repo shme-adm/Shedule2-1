@@ -1,5 +1,10 @@
-﻿@model Subjects_groups
-@using Shedule.Models
+﻿@*@model Subjects_groups
+@using Shedule.Models*@
+
+@model PagedList.IPagedList<Shedule.Models.Subjects_groups>
+@using PagedList.Mvc
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Предметы";
 }
@@ -81,7 +86,8 @@
 </div>*@
 <div id="">
     @{ int i = 1; int j = 1;}
-    @foreach (var item in ViewBag.Subjects_groups)
+    @foreach (var item in Model)
+
     {
         string s = "collapse" + item.Id; string sc = "#collapse" + item.Id;
 
@@ -91,24 +97,24 @@
                     <tr class="d-flex">
                         <td class="col-1">@i</td>
                         <td class="col-6">
-                            <a data-toggle="collapse" data-target="@sc" aria-expanded="true" aria-controls="@s">
+                            <a data-toggle="collapse" data-target="@sc" aria-expanded="false" aria-controls="@s">
                                 @item.Name
                             </a>
                         </td>
-                        <td class="col-2">@Html.ActionLink("Добавить элемент", "Create_subject", "Subjects", new { id = item.Id }, new { @class = "viewDialog", data_dialog_title = "Добавить тему" })</td>
+                        <td class="col-2">@Html.ActionLink("Добавить элемент", "Create_subject", "Subjects", new { id = item.Id },new { @class = "viewDialog", data_dialog_title = "Добавить тему" })</td>
                         <td class="text-right col-2">
                             @*<span data-feather="edit"></span>*@
                             @Html.ActionLink("Редактировать", "Edit", "Subjects", new { id = item.Id },
-                      new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
+                                new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
                         </td>
                         <td class="text-right col-1">
                             @Html.ActionLink("Удалить", "Delete", "Subjects", new { id = item.Id },
-                      new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
+                                new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
                         </td>
                     </tr>
                 </table>
             </div>
-            <div id="@s" class="collapse show" aria-labelledby="@item.Id" data-parent="#accordion">
+            <div id="@s" class="collapse" aria-labelledby="@item.Id" data-parent="#accordion">
                 <div class="card-body table-responsive">
                     @*@foreach (var item_sb in item.Subjects)
                         {*@
@@ -128,7 +134,7 @@
                         <tbody>
                             @foreach (var item_sb in item.Subjects)
                             {
-                                
+
                                 <tr class="d-flex">
                                     <td class="col-1">@i.@j</td>
                                     <td class="col-7">@item_sb.Name</td>
@@ -136,11 +142,11 @@
                                     <td class="text-right col-2">
                                         @*<span data-feather="edit"></span>*@
                                         @Html.ActionLink("Редактировать", "Edit_subject", "Subjects", new { id = item_sb.Id },
-new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
+                                                new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
                                     </td>
                                     <td class="text-right col-1">
                                         @Html.ActionLink("Удалить", "Delete_subject", "Subjects", new { id = item_sb.Id },
-new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
+                                                new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
                                     </td>
                                 </tr>
                                 j++;
@@ -153,4 +159,8 @@ new { @class = "viewDialog", data_dialog_title = "Удаление модели"
         </div>
         i++; j = 1;
     }
+    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>

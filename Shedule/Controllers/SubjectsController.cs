@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Shedule.Models;
 using System.Data.Entity;
+using PagedList;
 
 namespace Shedule.Controllers
 {
@@ -12,13 +13,33 @@ namespace Shedule.Controllers
     {
         ShedulerContext db = new ShedulerContext();
         // GET: Subjects
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.Message = "Предметы";
+
+            ViewBag.CurrentSort = sortOrder;
+            int pageSize = 10;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
             //ViewBag.Subjects = db.Subjects;
-            var subject = db.Subjects_groups.Include(sg=>sg.Subjects);
-            ViewBag.Subjects_groups = subject.OrderBy(sg=>sg.Name);
-            return View();
+            var subject = db.Subjects_groups.OrderBy(l => l.Name).Include(s=>s.Subjects);
+            //subject.OrderBy(sg=>sg.Name);
+            // ViewBag.Subjects_groups = subject.OrderBy(s=>s.Name);
+           // var ss = subject.OrderBy(sg => sg.Subjects);
+            
+            int pageNumber = (page ?? 1);
+            int counter = pageNumber * pageSize;
+           // ViewBag.Counter = counter;
+           // ViewBag.Subjects_groups.ToPagedList(pageNumber, pageSize);
+            return View(subject.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]
@@ -40,12 +61,14 @@ namespace Shedule.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create_subject()
+        public ActionResult Create_subject(int id)
         {
-
-            SelectList subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
-           // var subjects_groups = db.Subjects_groups.Find(id);
-            ViewBag.Subjects_groups = subjects_groups;
+            //var subjects_groups = db.Subjects_groups.Find(id);
+            //SelectList subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
+            //var subjects_groups = db.Subjects_groups;
+            ViewBag.subjects_groups = new SelectList(db.Subjects_groups.Where(s=>s.Id == id), "Id", "Name");
+            //var subjects_groups = db.Subjects_groups.Find(id);
+            //ViewBag.Subjects_groups = subjects_groups;
             //SelectList buildings = new SelectList(db.Buildings, "Id", "Name");
             //ViewBag.Buildings = buildings;
             //ViewBag.Message = ""
@@ -69,6 +92,7 @@ namespace Shedule.Controllers
         {
             //subjects.Subjects_groupsId = subjects_groups.Id;
             db.Subjects.Add(subjects);
+            //db.Subjects.Add();
             db.SaveChanges();
 
             return RedirectToAction("Index");
