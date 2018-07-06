@@ -346,6 +346,9 @@
     <Content Include="Views\Teachers\Edit.cshtml" />
     <Content Include="Views\Subjects\Delete_subject.cshtml" />
     <Content Include="Views\Subjects\Edit_subject.cshtml" />
+    <Content Include="Views\Cycles\Create_item.cshtml" />
+    <Content Include="Views\Cycles\Delete_item.cshtml" />
+    <Content Include="Views\Cycles\Edit_item.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

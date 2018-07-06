@@ -19,5 +19,6 @@ namespace Shedule.Models
         public DbSet<TypeOfClasses> TypeOfClasses { get; set; }
         public DbSet<Teachers> Teachers { get; set; }
         public DbSet<Cycles> Cycles { get; set; }
+        public DbSet<Cycles_item> Cycles_item { get; set; }
     }
 }

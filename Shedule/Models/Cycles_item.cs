@@ -12,6 +12,8 @@ namespace Shedule.Models
         [Display(Name = "Наименование")]
         public string Name { get; set; }
 
+        [Display(Name = "Часы")]
+        public int? Hours { get; set; }
         //[Display(Name = "")]
         [Display(Name = "Предмет")]
         public int? CyclesId { get; set; }
