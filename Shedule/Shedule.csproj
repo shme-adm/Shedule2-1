@@ -152,6 +152,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CyclesController.cs" />
     <Compile Include="Controllers\DirectoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SubjectsController.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Models\Cabinets.cs" />
     <Compile Include="Models\Cities.cs" />
     <Compile Include="Models\Cycles.cs" />
+    <Compile Include="Models\Cycles_item.cs" />
     <Compile Include="Models\Groups.cs" />
     <Compile Include="Models\HoursForLearning.cs" />
     <Compile Include="Models\ShedulerContext.cs" />
@@ -283,6 +285,10 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Views\Cycles\Create.cshtml" />
+    <Content Include="Views\Cycles\Delete.cshtml" />
+    <Content Include="Views\Cycles\Edit.cshtml" />
+    <Content Include="Views\Cycles\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -340,10 +346,6 @@
     <Content Include="Views\Teachers\Edit.cshtml" />
     <Content Include="Views\Subjects\Delete_subject.cshtml" />
     <Content Include="Views\Subjects\Edit_subject.cshtml" />
-    <Content Include="Views\Cycles\Index.cshtml" />
-    <Content Include="Views\Cycles\Edit.cshtml" />
-    <Content Include="Views\Cycles\Create.cshtml" />
-    <Content Include="Views\Cycles\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

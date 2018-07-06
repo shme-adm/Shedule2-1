@@ -14,7 +14,7 @@ namespace Shedule.Models
 
         //[Display(Name = "")]
         [Display(Name = "Предмет")]
-        public int? Subjects_groupsId { get; set; }
-        public Subjects_groups Subjects_groups { get; set; }
+        public int? CyclesId { get; set; }
+        public Cycles Cycles { get; set; }
     }
 }

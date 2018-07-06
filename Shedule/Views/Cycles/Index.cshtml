@@ -1,1 +1,98 @@
-﻿
+﻿@model PagedList.IPagedList<Shedule.Models.Cycles>
+@using PagedList.Mvc
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">@ViewBag.Message</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <button class="btn btn-sm btn-outline-secondary">
+            @*<span data-feather="plus-circle"></span>*@
+            @Html.ActionLink("Новая запись", "Create", "Cycles", new { }, new { @class = "viewDialog", data_dialog_title = "Создание модели" })
+        </button>
+    </div>
+</div>
+
+<div id="">
+    @{ int i = 1; int j = 1;}
+    @foreach (var item in Model)
+
+    {
+        string s = "collapse" + item.Id; string sc = "#collapse" + item.Id;
+
+        <div class="card">
+            <div class="card-header" id="@item.Id">
+                <table class="table table-responsive-sm nn">
+                    <tr class="d-flex">
+                        <td class="col-1">@i</td>
+                        <td class="col-6">
+                            <a data-toggle="collapse" data-target="@sc" aria-expanded="false" aria-controls="@s">
+                                @item.Name
+                            </a>
+                        </td>
+                        <td class="col-2">@Html.ActionLink("Добавить элемент", "Create_item", "Cycles", new { id = item.Id },new { @class = "viewDialog", data_dialog_title = "Добавить тему" })</td>
+                        <td class="text-right col-2">
+                            @*<span data-feather="edit"></span>*@
+                            @Html.ActionLink("Редактировать", "Edit", "Cycles", new { id = item.Id },
+                                new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
+                        </td>
+                        <td class="text-right col-1">
+                            @Html.ActionLink("Удалить", "Delete", "Cycles", new { id = item.Id },
+                                new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="@s" class="collapse" aria-labelledby="@item.Id" data-parent="#accordion">
+                <div class="card-body table-responsive">
+                    @*@foreach (var item_sb in item.Subjects)
+                        {*@
+                    @*<p>@item_sb.Name</p>*@
+
+
+                    @*<table class="table table-striped">
+                        <thead>
+                            <tr class="d-flex">
+                                <th class="col-1">№</th>
+                                <th class="col-7">Тема</th>
+                                <th class="col-1"></th>
+                                <th class="col-2"></th>
+                                <th class="col-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item_sb in item.Subjects)
+                            {
+
+                                <tr class="d-flex">
+                                    <td class="col-1">@i.@j</td>
+                                    <td class="col-7">@item_sb.Name</td>
+                                    <td class="col-1"></td>
+                                    <td class="text-right col-2">
+                                        @*<span data-feather="edit"></span>*@
+                                      @*  @Html.ActionLink("Редактировать", "Edit_subject", "Subjects", new { id = item_sb.Id },
+                                                new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
+                                    </td>
+                                    <td class="text-right col-1">
+                                        @Html.ActionLink("Удалить", "Delete_subject", "Subjects", new { id = item_sb.Id },
+                                                new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
+                                    </td>
+                                </tr>
+                                j++;
+                            }
+                        </tbody>
+                    </table>*@
+                    @*}*@
+                </div>
+            </div>
+        </div>
+        i++; j = 1;
+    }
+    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
