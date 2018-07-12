@@ -30,7 +30,7 @@ namespace Shedule.Controllers
             }
             ViewBag.CurrentFilter = searchString;
             //ViewBag.Subjects = db.Subjects;
-            var subject = db.Subjects_groups.OrderBy(l => l.Name).Include(s=>s.Subjects);
+            var subject = db.Subjects_groups.OrderBy(l => l.Name).Include(s => s.Subjects);
             //subject.OrderBy(sg=>sg.Name);
             // ViewBag.Subjects_groups = subject.OrderBy(s=>s.Name);
            // var ss = subject.OrderBy(sg => sg.Subjects);

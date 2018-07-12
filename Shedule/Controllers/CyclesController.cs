@@ -44,6 +44,47 @@ namespace Shedule.Controllers
         }
 
         [HttpGet]
+        public ActionResult Copy()
+        {
+            ViewBag.Subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
+            //SelectList buildings = new SelectList(db.Buildings, "Id", "Name");
+            //ViewBag.Buildings = buildings;
+            //ViewBag.Message = ""
+
+            //var subjects_groups = db.Subjects_groups.ToList<Subjects_groups>();
+            return PartialView("Copy");
+        }
+
+        [HttpPost]
+        public ActionResult Copy(Subjects_groups subjects_groups)
+        {
+            var Id = subjects_groups.Id;
+            var s = db.Subjects_groups.FirstOrDefault(l=>l.Id == Id);
+            var items = new List<Subjects>(db.Subjects.Where(l=>l.Subjects_groupsId == Id));    
+            //var items = new List<Cycles_item>();            
+            
+            var cycles = new Cycles()
+            {
+                Name = s.Name      
+                //Name = db.Subjects_groups.Where(c=>c.Id == subjects_groups.Id )
+                //Cycles_item = subjects_groups.Subjects
+            };
+
+            foreach (var item in items)
+            {
+                db.Cycles_item.Add(new Cycles_item { Name = item.Name, Hours = 0, CyclesId = cycles.Id });
+                //db.SaveChanges();
+            }
+            //cycles.Name = subjects_groups.Name;
+            //db.Subjects_groups.
+            db.Cycles.Add(cycles);
+            //db.Cycles_item.Add(items);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
         public ActionResult Create()
         {
             //SelectList buildings = new SelectList(db.Buildings, "Id", "Name");

@@ -11,6 +11,10 @@
     <div class="btn-toolbar mb-2 mb-md-0">
         <button class="btn btn-sm btn-outline-secondary">
             @*<span data-feather="plus-circle"></span>*@
+            @Html.ActionLink("Копия предмета", "Copy", "Cycles", new { }, new { @class = "viewDialog", data_dialog_title = "Создание модели" })
+        </button>
+        <button class="btn btn-sm btn-outline-secondary">
+            @*<span data-feather="plus-circle"></span>*@
             @Html.ActionLink("Новая запись", "Create", "Cycles", new { }, new { @class = "viewDialog", data_dialog_title = "Создание модели" })
         </button>
     </div>
