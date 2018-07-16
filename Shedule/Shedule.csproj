@@ -161,6 +161,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807161122207_AddCycles.cs" />
+    <Compile Include="Migrations\201807161122207_AddCycles.Designer.cs">
+      <DependentUpon>201807161122207_AddCycles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Buildings.cs" />
     <Compile Include="Models\Cabinets.cs" />
     <Compile Include="Models\Cities.cs" />
@@ -351,7 +356,11 @@
     <Content Include="Views\Cycles\Edit_item.cshtml" />
     <Content Include="Views\Cycles\Copy.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807161122207_AddCycles.resx">
+      <DependentUpon>201807161122207_AddCycles.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

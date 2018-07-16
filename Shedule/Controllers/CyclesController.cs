@@ -30,16 +30,11 @@ namespace Shedule.Controllers
                 searchString = currentFilter;
             }
             ViewBag.CurrentFilter = searchString;
-            //ViewBag.Subjects = db.Subjects;
-            var cycle = db.Cycles.OrderBy(l => l.Name).Include(l=>l.Cycles_item);
-            //subject.OrderBy(sg=>sg.Name);
-            // ViewBag.Subjects_groups = subject.OrderBy(s=>s.Name);
-            // var ss = subject.OrderBy(sg => sg.Subjects);
+            
+            var cycle = db.Cycles.OrderBy(l => l.Name).Include(l=>l.Cycles_item);           
 
             int pageNumber = (page ?? 1);
-           // int counter = pageNumber * pageSize;
-            // ViewBag.Counter = counter;
-            // ViewBag.Subjects_groups.ToPagedList(pageNumber, pageSize);
+           
             return View(cycle.ToPagedList(pageNumber, pageSize));
         }
 
@@ -47,11 +42,8 @@ namespace Shedule.Controllers
         public ActionResult Copy()
         {
             ViewBag.Subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
-            //SelectList buildings = new SelectList(db.Buildings, "Id", "Name");
-            //ViewBag.Buildings = buildings;
-            //ViewBag.Message = ""
+            ViewBag.Subjects = new SelectList(db.Subjects, "Id", "Name");
 
-            //var subjects_groups = db.Subjects_groups.ToList<Subjects_groups>();
             return PartialView("Copy");
         }
 
@@ -61,24 +53,47 @@ namespace Shedule.Controllers
             var Id = subjects_groups.Id;
             var s = db.Subjects_groups.FirstOrDefault(l=>l.Id == Id);
             var items = new List<Subjects>(db.Subjects.Where(l=>l.Subjects_groupsId == Id));    
-            //var items = new List<Cycles_item>();            
-            
+           
             var cycles = new Cycles()
             {
-                Name = s.Name      
-                //Name = db.Subjects_groups.Where(c=>c.Id == subjects_groups.Id )
-                //Cycles_item = subjects_groups.Subjects
+                Name = s.Name                
             };
 
             foreach (var item in items)
             {
                 db.Cycles_item.Add(new Cycles_item { Name = item.Name, Hours = 0, CyclesId = cycles.Id });
-                //db.SaveChanges();
-            }
-            //cycles.Name = subjects_groups.Name;
-            //db.Subjects_groups.
+            }            
             db.Cycles.Add(cycles);
-            //db.Cycles_item.Add(items);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Copy_item()
+        {
+            ViewBag.Subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
+
+            return PartialView("Copy");
+        }
+
+        [HttpPost]
+        public ActionResult Copy_item(Subjects_groups subjects_groups)
+        {
+            var Id = subjects_groups.Id;
+            var s = db.Subjects_groups.FirstOrDefault(l => l.Id == Id);
+            var items = new List<Subjects>(db.Subjects.Where(l => l.Subjects_groupsId == Id));
+
+            var cycles = new Cycles()
+            {
+                Name = s.Name
+            };
+
+            foreach (var item in items)
+            {
+                db.Cycles_item.Add(new Cycles_item { Name = item.Name, Hours = 0, CyclesId = cycles.Id });
+            }
+            db.Cycles.Add(cycles);
             db.SaveChanges();
 
             return RedirectToAction("Index");
@@ -132,6 +147,7 @@ namespace Shedule.Controllers
         public ActionResult Delete(int id)
         {
             var cycles = db.Cycles.Find(id);
+            
             if (cycles != null)
             {
                 return PartialView("Delete", cycles);
@@ -144,9 +160,12 @@ namespace Shedule.Controllers
         public ActionResult DeleteRecord(int id)
         {
             var cycles = db.Cycles.Find(id);
-
+            var cycles_item = db.Cycles_item.Where(l => l.CyclesId == id).FirstOrDefault();
             if (cycles != null)
-            {
+            {   if (cycles_item != null)
+                {
+                    db.Cycles_item.Remove(cycles_item);
+                }
                 db.Cycles.Remove(cycles);
                 db.SaveChanges();
             }

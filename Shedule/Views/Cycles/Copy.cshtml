@@ -16,6 +16,11 @@
                 @Html.DropDownListFor(model=>model.Id, ViewBag.Subjects_groups as SelectList, new { @class = "form-control" })
                 @*@Html.DropDownList(model=>, ViewBag.Subjects_groups as SelectList, new { @class = "form-control" })*@
             </div>
+            @*<div>
+                @Html.LabelFor(model => model.Name)
+                @Html.DropDownListFor(model => model.Id, ViewBag.Subjects as SelectList, new { @class = "form-control" })
+                @Html.DropDownList(model=>, ViewBag.Subjects_groups as SelectList, new { @class = "form-control" })
+            </div>*@
             <div class="d-flex justify-content">
                 <input type="submit" class="btn btn-outline-success" value="Создать" />
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Отмена</button>
