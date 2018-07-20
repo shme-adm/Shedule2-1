@@ -1,0 +1,35 @@
+﻿@model Shedule.Models.Speciality_item
+
+<div class="modal-content">
+    <div class="modal-header d-flex justify-content-center">
+        <h4>Редактирование записи</h4>
+        @*<button class="close" data-dismiss="modal" area-hidden="true">x</button>*@
+    </div>
+    <div class="modal-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(с => с.Id)
+            <div>
+                @Html.LabelFor(model => model.Name)
+                <p>@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })</p>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.SpecialityId)
+                @Html.DropDownListFor(model => model.SpecialityId, ViewBag.Speciality as SelectList, new { @class = "form-control" })
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Hours)
+                @Html.EditorFor(model => model.Hours, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="d-flex justify-content">
+                <input type="submit" class="btn btn-outline-success" value="Сохранить" />
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Отмена</button>
+            </div>
+
+        }
+    </div>
+</div>
+
+

@@ -160,11 +160,12 @@ namespace Shedule.Controllers
         public ActionResult DeleteRecord(int id)
         {
             var cycles = db.Cycles.Find(id);
-            var cycles_item = db.Cycles_item.Where(l => l.CyclesId == id).FirstOrDefault();
+            var cycles_item = db.Cycles_item.Where(l => l.CyclesId == id).FirstOrDefault();///поправить удаление циклов скопированных из предметов
             if (cycles != null)
             {   if (cycles_item != null)
                 {
                     db.Cycles_item.Remove(cycles_item);
+                    db.SaveChanges();
                 }
                 db.Cycles.Remove(cycles);
                 db.SaveChanges();
