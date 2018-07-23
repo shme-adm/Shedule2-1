@@ -15,10 +15,12 @@ namespace Shedule.Models
         //public int? Subjects_groupsId { get; set; }
         //public Subjects_groups Subjects_groups { get; set; }
 
-        public ICollection<Speciality_item> Speciality_item { get; set; }
+        //public ICollection<Speciality_item> Speciality_item { get; set; }
+        public ICollection<Subjects> Subjects { get; set; }
         public Speciality()
         {
-            Speciality_item = new List<Speciality_item>();
+            //Speciality_item = new List<Speciality_item>();
+            Subjects = new List<Subjects>();
         }
         //public Cycles(string name)
         //{

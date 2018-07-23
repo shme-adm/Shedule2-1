@@ -16,7 +16,7 @@ namespace Shedule.Models
         public int? Hours { get; set; }
         //[Display(Name = "")]
         [Display(Name = "Предмет")]
-        public int? SpecialityId { get; set; }
-        public Speciality Speciality { get; set; }
+        //public int? SpecialityId { get; set; }
+       // public Speciality Speciality { get; set; }
     }
 }

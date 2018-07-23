@@ -175,11 +175,9 @@
     <Compile Include="Models\Speciality_item.cs" />
     <Compile Include="Models\Cycles_item.cs" />
     <Compile Include="Models\Groups.cs" />
-    <Compile Include="Models\HoursForLearning.cs" />
     <Compile Include="Models\ShedulerContext.cs" />
     <Compile Include="Models\Subjects.cs" />
     <Compile Include="Models\Subjects_groups.cs" />
-    <Compile Include="Models\Tariffing.cs" />
     <Compile Include="Models\Teachers.cs" />
     <Compile Include="Models\TypeOfClasses.cs" />
     <Compile Include="Models\Units.cs" />
@@ -366,11 +364,6 @@
     <Content Include="Views\Speciality\Edit.cshtml" />
     <Content Include="Views\Speciality\Edit_item.cshtml" />
     <Content Include="Views\Speciality\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807161122207_AddCycles.resx">
-      <DependentUpon>201807161122207_AddCycles.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

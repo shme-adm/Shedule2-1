@@ -15,7 +15,8 @@ namespace Shedule.Controllers
         ShedulerContext db = new ShedulerContext();       
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            ViewBag.Message = "Циклы";
+            ViewBag.Message = "Отделения";
+            var ss = db.Speciality;
 
             ViewBag.CurrentSort = sortOrder;
             int pageSize = 10;
@@ -29,12 +30,12 @@ namespace Shedule.Controllers
                 searchString = currentFilter;
             }
             ViewBag.CurrentFilter = searchString;
-            
-            var speciality = db.Speciality.OrderBy(l => l.Name).Include(l => l.Speciality_item);           
+
+            var s = db.Speciality.OrderBy(l => l.Name).Include(l => l.Speciality_item);
 
             int pageNumber = (page ?? 1);
            
-            return View(speciality.ToPagedList(pageNumber, pageSize));
+            return View(s.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]
@@ -175,6 +176,9 @@ namespace Shedule.Controllers
         [HttpGet]
         public ActionResult Create_item(int id)
         {
+            int selectedIndex = 1;
+            ViewBag.Subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name", selectedIndex);
+            ViewBag.Subjects = new SelectList(db.Subjects.Where(c => c.Subjects_groupsId == selectedIndex), "Id", "Name");
             ViewBag.Speciality = new SelectList(db.Speciality.Where(s => s.Id == id), "Id", "Name");
             return PartialView("Create_item"/*, subjects_groups*/);
         }
@@ -188,6 +192,11 @@ namespace Shedule.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult GetItems(int id)
+        {
+            return PartialView(db.Subjects.Where(c => c.Subjects_groupsId == id).ToList());
         }
 
 

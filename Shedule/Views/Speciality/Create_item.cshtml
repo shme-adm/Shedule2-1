@@ -10,10 +10,10 @@
         {
             @Html.AntiForgeryToken()
 
-            <div>
+            @*<div>
                 @Html.LabelFor(model => model.Name)
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
+            </div>*@
             <div>
                 @Html.LabelFor(model => model.Hours)
                 @Html.EditorFor(model => model.Hours, new { htmlAttributes = new { @class = "form-control" } })
