@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,8 +30,8 @@ namespace Shedule.Controllers
                 searchString = currentFilter;
             }
             ViewBag.CurrentFilter = searchString;
-            
-            var cycle = db.Cycles.OrderBy(l => l.Name).Include(l=>l.Cycles_item);           
+
+            var cycle = db.Cycles.OrderBy(l => l.Name);     
 
             int pageNumber = (page ?? 1);
            
@@ -39,7 +39,7 @@ namespace Shedule.Controllers
         }
 
         [HttpGet]
-        public ActionResult Copy()
+        public ActionResult Copy(int? id)
         {
             ViewBag.Subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
             ViewBag.Subjects = new SelectList(db.Subjects, "Id", "Name");
@@ -48,63 +48,58 @@ namespace Shedule.Controllers
         }
 
         [HttpPost]
-        public ActionResult Copy(Subjects_groups subjects_groups)
+        public ActionResult Copy(Cycles cycles)
         {
-            var Id = subjects_groups.Id;
-            var s = db.Subjects_groups.FirstOrDefault(l=>l.Id == Id);
-            var items = new List<Subjects>(db.Subjects.Where(l=>l.Subjects_groupsId == Id));    
-           
-            var cycles = new Cycles()
-            {
-                Name = s.Name                
-            };
+            var id_cycle = cycles.Id;
+            var id_subject_group = Int32.Parse(Request.Form["Subjects_groups"]);
+            var items = new List<Subjects>(db.Subjects.Where(l => l.Subjects_groupsId == id_subject_group));
+            
 
             foreach (var item in items)
             {
-                db.Cycles_item.Add(new Cycles_item { Name = item.Name, Hours = 0, CyclesId = cycles.Id });
-            }            
-            db.Cycles.Add(cycles);
+                db.Cycles_item.Add(new Cycles_item { Name = item.Name, Hours = 0, CyclesId = id_cycle });
+            }          
             db.SaveChanges();
 
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public ActionResult Copy_item()
-        {
-            ViewBag.Subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
+        //[HttpGet]
+        //public ActionResult Copy(int? id)
+        //{
+        //    ViewBag.Subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
+        //    ViewBag.Subjects = new SelectList(db.Subjects, "Id", "Name");
 
-            return PartialView("Copy");
-        }
+        //    return PartialView("Copy");
+        //}
 
-        [HttpPost]
-        public ActionResult Copy_item(Subjects_groups subjects_groups)
-        {
-            var Id = subjects_groups.Id;
-            var s = db.Subjects_groups.FirstOrDefault(l => l.Id == Id);
-            var items = new List<Subjects>(db.Subjects.Where(l => l.Subjects_groupsId == Id));
+        //[HttpPost]
+        //public ActionResult Copy(Subjects_groups subjects_groups)
+        //{
+        //    var Id = subjects_groups.Id;
+        //    var s = db.Subjects_groups.FirstOrDefault(l => l.Id == Id);
+        //    var items = new List<Subjects>(db.Subjects.Where(l => l.Subjects_groupsId == Id));
 
-            var cycles = new Cycles()
-            {
-                Name = s.Name
-            };
+        //    var cycles = new Cycles()
+        //    {
+        //        Name = s.Name
+        //    };
 
-            foreach (var item in items)
-            {
-                db.Cycles_item.Add(new Cycles_item { Name = item.Name, Hours = 0, CyclesId = cycles.Id });
-            }
-            db.Cycles.Add(cycles);
-            db.SaveChanges();
+        //    foreach (var item in items)
+        //    {
+        //        db.Cycles_item.Add(new Cycles_item { Name = item.Name, Hours = 0, CyclesId = cycles.Id });
+        //    }
+        //    db.Cycles.Add(cycles);
+        //    db.SaveChanges();
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
+
+        
 
         [HttpGet]
         public ActionResult Create()
-        {
-            //SelectList buildings = new SelectList(db.Buildings, "Id", "Name");
-            //ViewBag.Buildings = buildings;
-            //ViewBag.Message = ""
+        {            
             return PartialView("Create");
         }
 
@@ -154,95 +149,119 @@ namespace Shedule.Controllers
             }
             return View("Index");
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [ActionName("Delete")]
-        public ActionResult DeleteRecord(int id)
-        {
-            var cycles = db.Cycles.Find(id);
-            var cycles_item = db.Cycles_item.Where(l => l.CyclesId == id).FirstOrDefault();///поправить удаление циклов скопированных из предметов
-            if (cycles != null)
-            {   if (cycles_item != null)
-                {
-                    db.Cycles_item.Remove(cycles_item);
-                    db.SaveChanges();
-                }
-                db.Cycles.Remove(cycles);
-                db.SaveChanges();
-            }
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[ActionName("Delete")]
+        //public ActionResult DeleteRecord(int id)
+        //{
+        //    var cycles = db.Cycles.Find(id);
+        //    var cycles_item = db.Cycles_item.Where(l => l.CyclesId == id).FirstOrDefault();///поправить удаление циклов скопированных из предметов
+        //    if (cycles != null)
+        //    {   if (cycles_item != null)
+        //        {
+        //            db.Cycles_item.Remove(cycles_item);
+        //            db.SaveChanges();
+        //        }
+        //        db.Cycles.Remove(cycles);
+        //        db.SaveChanges();
+        //    }
+        //    return RedirectToAction("Index");
+        //}
 
         [HttpGet]
-        public ActionResult Create_item(int id)
+        public ActionResult Create_item(int? id)
         {
-            ViewBag.Cycles = new SelectList(db.Cycles.Where(s => s.Id == id), "Id", "Name");
-            return PartialView("Create_item"/*, subjects_groups*/);
-        }
-
-        [HttpPost]
-        public ActionResult Create_item(Cycles_item cycles_item/*, Subjects_groups subjects_groups*/)
-        {
-            //subjects.Subjects_groupsId = subjects_groups.Id;
-            db.Cycles_item.Add(cycles_item);
-            //db.Subjects.Add();
-            db.SaveChanges();
-
-            return RedirectToAction("Index");
-        }
-
-
-        [HttpGet]
-        public ActionResult Edit_item(int? id)
-        {
-            SelectList cycles = new SelectList(db.Cycles, "Id", "Name");
-            ViewBag.Cycles = cycles;
             if (id == null)
             {
                 return HttpNotFound();
             }
-            var cycles_item = db.Cycles_item.Find(id);
-            if (cycles_item != null)
+            var cycles = db.Cycles.Find(id);
+            if (cycles != null)
             {
-                // SelectList buildings = new SelectList(db.Buildings, "Id", "Name", cabinet.BuildingsId);
-                //ViewBag.Buildings = buildings;
-                return PartialView("Edit_item", cycles_item);
+                int selectedIndex = db.Subjects_groups.Min(c=>c.Id);
+
+                var sb = new SelectList(db.Subjects_groups.OrderBy(l => l.Name), "Id", "Name", selectedIndex);
+                ViewBag.Subjects_groups = sb;
+
+                var ss = new SelectList(db.Subjects.Where(c => c.Subjects_groupsId == selectedIndex), "Id", "Name");
+                ViewBag.Subjects = ss;
+
+                return PartialView("Create_item");
             }
             return RedirectToAction("Index");
-
+            
         }
 
         [HttpPost]
-        public ActionResult Edit_item(Cycles_item cycles_item)
+        public ActionResult Create_item(Cycles cycles)
         {
-            db.Entry(cycles_item).State = EntityState.Modified;
-            db.SaveChanges();
+
+            var id_cycle = cycles.Id;
+            var id_subject = db.Subjects.Find(Int32.Parse(Request.Form["Subject"]));
+            db.Cycles_item.Add(new Cycles_item { Name = id_subject.Name, Hours = 0, CyclesId=id_cycle});
+            db.SaveChanges();   
+            
 
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete_item(int id)
+        public ActionResult GetItems(int id)
         {
-            var cycles_item = db.Cycles_item.Find(id);
-            if (cycles_item != null)
-            {
-                return PartialView("Delete_item", cycles_item);
-            }
-            return View("Index");
+            return PartialView(db.Subjects.Where(c => c.Subjects_groupsId == id).ToList());
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [ActionName("Delete_item")]
-        public ActionResult DeleteRecord_item(int id)
-        {
-            var cycles_item = db.Cycles_item.Find(id);
 
-            if (cycles_item != null)
-            {
-                db.Cycles_item.Remove(cycles_item);
-                db.SaveChanges();
-            }
-            return RedirectToAction("Index");
-        }
+
+        //[HttpGet]
+        //public ActionResult Edit_item(int? id)
+        //{
+        //    SelectList cycles = new SelectList(db.Cycles, "Id", "Name");
+        //    ViewBag.Cycles = cycles;
+        //    if (id == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    var cycles_item = db.Cycles_item.Find(id);
+        //    if (cycles_item != null)
+        //    {
+        //        // SelectList buildings = new SelectList(db.Buildings, "Id", "Name", cabinet.BuildingsId);
+        //        //ViewBag.Buildings = buildings;
+        //        return PartialView("Edit_item", cycles_item);
+        //    }
+        //    return RedirectToAction("Index");
+
+        //}
+
+        //[HttpPost]
+        //public ActionResult Edit_item(Cycles_item cycles_item)
+        //{
+        //    db.Entry(cycles_item).State = EntityState.Modified;
+        //    db.SaveChanges();
+
+        //    return RedirectToAction("Index");
+        //}
+
+        //public ActionResult Delete_item(int id)
+        //{
+        //    var cycles_item = db.Cycles_item.Find(id);
+        //    if (cycles_item != null)
+        //    {
+        //        return PartialView("Delete_item", cycles_item);
+        //    }
+        //    return View("Index");
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[ActionName("Delete_item")]
+        //public ActionResult DeleteRecord_item(int id)
+        //{
+        //    var cycles_item = db.Cycles_item.Find(id);
+
+        //    if (cycles_item != null)
+        //    {
+        //        db.Cycles_item.Remove(cycles_item);
+        //        db.SaveChanges();
+        //    }
+        //    return RedirectToAction("Index");
+        //}
     }
 }

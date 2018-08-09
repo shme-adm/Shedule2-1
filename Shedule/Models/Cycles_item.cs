@@ -9,14 +9,18 @@ namespace Shedule.Models
     public class Cycles_item
     {
         public int Id { get; set; }
-        [Display(Name = "Наименование")]
+
+        [Display(Name = "Предмет")]
         public string Name { get; set; }
 
         [Display(Name = "Часы")]
         public int? Hours { get; set; }
-        //[Display(Name = "")]
-        [Display(Name = "Предмет")]
+        
+        [Display(Name = "Цикл")]
         public int? CyclesId { get; set; }
         public Cycles Cycles { get; set; }
+
+        //public int? SubjectId { get; set; }
+        //public Subjects Subjects { get; set; }
     }
 }

@@ -16,5 +16,20 @@ namespace Shedule.Models
         [Display(Name = "Предмет")]
         public int? Subjects_groupsId { get; set; }
         public Subjects_groups Subjects_groups { get; set; }
+
+       
+
+        //public virtual ICollection<Cycles> Cycle { get; set; }
+        //public Subjects()
+        //{
+        //    Cycle = new List<Cycles>();
+        //}
+        //public int Cycles_itemId { get; set; }
+        //public Cycles_item Cycles_item { get; set; }
+        //public ICollection<Cycles_item> Cycles_item { get; set; }
+        //public Subjects()
+        //{
+        //    Cycles_item = new List<Cycles_item>();
+        //}
     }
 }

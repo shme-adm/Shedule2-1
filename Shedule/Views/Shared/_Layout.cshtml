@@ -15,6 +15,9 @@
 
 <body>
     <nav class="navbar navbar-light fixed-top flex-md-nowrap p-0 shadow">
+        
+        
+
         @Html.ActionLink("Расписание", "Index", "Home", new { area = "" }, new { @class = "navbar-brand col-sm-3 col-md-2 mr-0" })
         @*<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">*@
         @*<div class="d-flex align-self-stretch bg-light w-100 text-center" >Приветствие</div>*@
@@ -22,7 +25,7 @@
             <li class="nav-item text-nowrap">
                 <a class="nav-link" href="#">Выход</a>
             </li>
-        </ul>       
+        </ul>
     </nav>
     <div class="container-fluid">
         <div class="row">
@@ -109,12 +112,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index","Speciality")">
-                                <span data-feather="book"></span>
-                                Отделения
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Index","Teachers")">
                                 <span data-feather="book"></span>
                                 Преподаватели
@@ -126,16 +123,7 @@
         </div>
     </div>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        @* <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Рабочая область</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-                    <button class="btn btn-sm btn-outline-secondary">
-                    <span data-feather="plus-circle"></span>
-                    Новая запись
-                </button>
-            </div>
-        </div>*@
-        
+       
         <div id="modDialog" class="modal fade">
             <div id="dialogContent" class="modal-dialog"></div>
         </div>
@@ -149,26 +137,26 @@
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>feather.replace()</script>
     @*<script>
-        $(document).ready(function () {
+            $(document).ready(function () {
 
-            $.ajaxSetup({ cache: false });
+                $.ajaxSetup({ cache: false });
 
-            $(".viewDialog").on("click", function (e) {
-                e.preventDefault();
+                $(".viewDialog").on("click", function (e) {
+                    e.preventDefault();
 
-                $("<div></div>")
-                    .addClass("modal fade")
-                    .appendTo("body")
-                    .dialog({
-                        title: $(this).attr("data-dialog-title"),
-                        close: function () { $(this).remove() },
-                        modal: true
-                    })
-                    .load(this.href);
+                    $("<div></div>")
+                        .addClass("modal fade")
+                        .appendTo("body")
+                        .dialog({
+                            title: $(this).attr("data-dialog-title"),
+                            close: function () { $(this).remove() },
+                            modal: true
+                        })
+                        .load(this.href);
+                });
             });
-        });
-    </script>*@
-    
+        </script>*@
+
     <script>
         $(document).ready(function () {
             $.ajaxSetup({ cache: false });
@@ -179,7 +167,8 @@
                     $('#modDialog').modal('show');
                 });
             });
-        })
-    </script>
+        })    
+                  
+   </script>
 </body>
 </html>

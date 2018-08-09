@@ -1,4 +1,4 @@
-﻿@model Shedule.Models.Subjects_groups
+﻿@model Shedule.Models.Cycles
 
 <div class="modal-content">
     <div class="modal-header d-flex justify-content-center">
@@ -9,11 +9,11 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-            @*@Html.HiddenFor(с => с.Id)*@
+           // @Html.HiddenFor(с => с.Id)
 
             <div>
-                @Html.LabelFor(model => model.Name)
-                @Html.DropDownListFor(model=>model.Id, ViewBag.Subjects_groups as SelectList, new { @class = "form-control" })
+                @*@Html.LabelFor(model => model.Name)*@
+                @Html.DropDownList("Subjects_groups", ViewBag.Subjects_groups as SelectList, new { @class = "form-control" })
                 @*@Html.DropDownList(model=>, ViewBag.Subjects_groups as SelectList, new { @class = "form-control" })*@
             </div>
             @*<div>

@@ -1,5 +1,6 @@
-﻿@model Shedule.Models.Cycles_item
- 
+﻿@using Shedule.Models
+@model Cycles
+
 <div class="modal-content">
     <div class="modal-header d-flex justify-content-center">
         <h4>Новая запись</h4>
@@ -9,25 +10,54 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-
+            //@Html.HiddenFor(с => с.Id)
+           // @Html.HiddenFor(c => c.Name)
+            @*<div>
+                    @Html.LabelFor(model => model.Name)
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                </div>*@
             <div>
-                @Html.LabelFor(model => model.Name)
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.DropDownList("Subject_group", ViewBag.Subjects_groups as SelectList, new { @class = "form-control", id = "subject_group" })
             </div>
             <div>
+               @* @Html.LabelFor(model => model.Subject)*@
+                @Html.DropDownListFor(Subjects, ViewBag.Subjects as SelectList, new { @class = "form-control", id = "subject", name="Subject" })
+            </div>
+            @*<div>
                 @Html.LabelFor(model => model.Hours)
                 @Html.EditorFor(model => model.Hours, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
+            </div>*@
             <div>
-                @*@{Model.Subjects_groupsId = ViewBag.Subjects_groups.Id}*@
-                @Html.LabelFor(model => model.CyclesId)
-                @Html.DropDownListFor(model => model.CyclesId, ViewBag.Cycles as SelectList, new { @class = "form-control disabled" })
+               @*@{Model.Subjects_groupsId = ViewBag.Subjects_groups.Id}*@
+                @*@Html.LabelFor(model => model.Id)
+                @Html.DropDownListFor(model => model.Id, ViewBag.Cycles as SelectList, new { @class = "form-control" })*@
                 @*@Html.DropDownListFor(model => model.Subjects_groupsId, ViewBag.Subjects_groups as SelectList, new { @class = "form-control disabled" } )*@
             </div>
+
             <div class="d-flex justify-content">
                 <input type="submit" class="btn btn-outline-success" value="Создать" />
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Отмена</button>
             </div>
         }
     </div>
+    <script type="text/javascript">
+                $(function () {
+
+                    $('#subject_group').change(function()
+                    {
+                        // получаем выбранный id
+                        var id = $(this).val();
+                        $.ajax({
+                            type: 'GET',
+                            url: '@Url.Action("GetItems")/' + id,
+                            success: function (data) {
+
+                                // заменяем содержимое присланным частичным представлением
+                                $('#subject').replaceWith(data);
+                            }
+                        });
+                    });
+                })
+    </script>
 </div>

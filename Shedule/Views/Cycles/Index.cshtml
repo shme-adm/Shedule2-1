@@ -32,12 +32,13 @@
                 <table class="table table-responsive-sm nn">
                     <tr class="d-flex">
                         <td class="col-1">@i</td>
-                        <td class="col-6">
+                        <td class="col-4">
                             <a data-toggle="collapse" data-target="@sc" aria-expanded="false" aria-controls="@s">
                                 @item.Name
                             </a>
                         </td>
-                        <td class="col-2">@Html.ActionLink("Добавить элемент", "Create_item", "Cycles", new { id = item.Id },new { @class = "viewDialog", data_dialog_title = "Добавить тему" })</td>
+                        <td class="col-2">@Html.ActionLink("Добавить предмет", "Copy", "Cycles", new { id = item.Id }, new { @class = "viewDialog", data_dialog_title = "Добавить тему" })</td>
+                        <td class="col-2">@Html.ActionLink("Добавить тему", "Create_item", "Cycles", new { id = item.Id }, new { @class = "viewDialog", data_dialog_title = "Добавить тему" })</td>
                         <td class="text-right col-2">
                             @*<span data-feather="edit"></span>*@
                             @Html.ActionLink("Редактировать", "Edit", "Cycles", new { id = item.Id },
@@ -50,7 +51,7 @@
                     </tr>
                 </table>
             </div>
-            <div id="@s" class="collapse" aria-labelledby="@item.Id" data-parent="#accordion">
+            <div id="@s" class="collapse" aria-labelledby="@item.Id" @*data-parent="#accordion"*@>
                 <div class="card-body table-responsive">
                    @*@ @foreach (var item_sb in item.Cycles_item)
                         {

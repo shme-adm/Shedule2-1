@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Shedule.Models.Subjects>
+<select class="form-control" id="subject" name="SubjectId">
+    <option disabled=""></option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>

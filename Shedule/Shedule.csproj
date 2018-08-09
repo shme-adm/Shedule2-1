@@ -152,7 +152,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\SpecialityController.cs" />
     <Compile Include="Controllers\CyclesController.cs" />
     <Compile Include="Controllers\DirectoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -162,17 +161,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807161122207_AddCycles.cs" />
-    <Compile Include="Migrations\201807161122207_AddCycles.Designer.cs">
-      <DependentUpon>201807161122207_AddCycles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Buildings.cs" />
     <Compile Include="Models\Cabinets.cs" />
     <Compile Include="Models\Cities.cs" />
-    <Compile Include="Models\Speciality.cs" />
     <Compile Include="Models\Cycles.cs" />
-    <Compile Include="Models\Speciality_item.cs" />
     <Compile Include="Models\Cycles_item.cs" />
     <Compile Include="Models\Groups.cs" />
     <Compile Include="Models\ShedulerContext.cs" />
@@ -356,14 +348,7 @@
     <Content Include="Views\Cycles\Delete_item.cshtml" />
     <Content Include="Views\Cycles\Edit_item.cshtml" />
     <Content Include="Views\Cycles\Copy.cshtml" />
-    <Content Include="Views\Speciality\Copy.cshtml" />
-    <Content Include="Views\Speciality\Create.cshtml" />
-    <Content Include="Views\Speciality\Create_item.cshtml" />
-    <Content Include="Views\Speciality\Delete.cshtml" />
-    <Content Include="Views\Speciality\Delete_item.cshtml" />
-    <Content Include="Views\Speciality\Edit.cshtml" />
-    <Content Include="Views\Speciality\Edit_item.cshtml" />
-    <Content Include="Views\Speciality\Index.cshtml" />
+    <Content Include="Views\Cycles\GetItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
