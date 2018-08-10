@@ -149,24 +149,28 @@ namespace Shedule.Controllers
             }
             return View("Index");
         }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[ActionName("Delete")]
-        //public ActionResult DeleteRecord(int id)
-        //{
-        //    var cycles = db.Cycles.Find(id);
-        //    var cycles_item = db.Cycles_item.Where(l => l.CyclesId == id).FirstOrDefault();///поправить удаление циклов скопированных из предметов
-        //    if (cycles != null)
-        //    {   if (cycles_item != null)
-        //        {
-        //            db.Cycles_item.Remove(cycles_item);
-        //            db.SaveChanges();
-        //        }
-        //        db.Cycles.Remove(cycles);
-        //        db.SaveChanges();
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public ActionResult DeleteRecord(int id)
+        {
+            var cycles = db.Cycles.Find(id);
+            var items = new List<Cycles_item>(db.Cycles_item.Where(l => l.CyclesId == id));
+            if (cycles != null)
+            {
+                if (items != null)
+                {
+                    foreach (var item in items)
+                    {
+                        db.Cycles_item.Remove(item);
+                    }                    
+                    db.SaveChanges();
+                }
+                db.Cycles.Remove(cycles);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
 
         [HttpGet]
         public ActionResult Create_item(int? id)
