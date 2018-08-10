@@ -22,7 +22,7 @@
             </div>
             <div>
                @* @Html.LabelFor(model => model.Subject)*@
-                @Html.DropDownListFor(Subjects, ViewBag.Subjects as SelectList, new { @class = "form-control", id = "subject", name="Subject" })
+                @Html.DropDownList("Subject", ViewBag.Subjects as SelectList, new { @class = "form-control", id = "subject"})
             </div>
             @*<div>
                 @Html.LabelFor(model => model.Hours)
