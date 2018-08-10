@@ -15,8 +15,9 @@
                 <p>@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })</p>
             </div>
             <div>
-                @Html.LabelFor(model => model.CyclesId)
-                @Html.DropDownListFor(model => model.CyclesId, ViewBag.Cycles as SelectList, new { @class = "form-control" })
+                @*@Html.LabelFor(model => model.CyclesId)*@
+                @*@Html.HiddenFor(model => model.CyclesId, ViewBag.Cycles as SelectList, new { @class = "form-control" })*@
+                @Html.HiddenFor(model => model.CyclesId)
             </div>
             <div>
                 @Html.LabelFor(model => model.Hours)

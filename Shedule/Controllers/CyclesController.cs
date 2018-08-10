@@ -41,8 +41,10 @@ namespace Shedule.Controllers
         [HttpGet]
         public ActionResult Copy(int? id)
         {
+           
             ViewBag.Subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
-            ViewBag.Subjects = new SelectList(db.Subjects, "Id", "Name");
+            //ViewBag.Subjects = new SelectList(db.Subjects, "Id", "Name");
+            //ViewBag.Subjects = new SelectList(itemsFromBase,"Id","Name");
 
             return PartialView("Copy");
         }
@@ -175,6 +177,19 @@ namespace Shedule.Controllers
         [HttpGet]
         public ActionResult Create_item(int? id)
         {
+
+            var items = new List<Cycles_item>(db.Cycles_item.Where(c => c.CyclesId == id));
+            var items_s = new List<Subjects>(db.Subjects);
+            var itemsFromBase = new List<Subjects>();
+            
+            foreach (var item_s in items_s)
+            {
+                if (items.Where(c => c.Name != item_s.Name).Count() != 0)
+                {
+                    itemsFromBase.Add(item_s);
+                }
+            }
+
             if (id == null)
             {
                 return HttpNotFound();
@@ -187,7 +202,7 @@ namespace Shedule.Controllers
                 var sb = new SelectList(db.Subjects_groups.OrderBy(l => l.Name), "Id", "Name", selectedIndex);
                 ViewBag.Subjects_groups = sb;
 
-                var ss = new SelectList(db.Subjects.Where(c => c.Subjects_groupsId == selectedIndex), "Id", "Name");
+                var ss = new SelectList(itemsFromBase.Where(c => c.Subjects_groupsId == selectedIndex), "Id", "Name");
                 ViewBag.Subjects = ss;
 
                 return PartialView("Create_item");
@@ -209,9 +224,36 @@ namespace Shedule.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult GetItems(int id)
+        public ActionResult GetItems(int id)////необходимо попрпавить вывод списков после выбора
         {
             return PartialView(db.Subjects.Where(c => c.Subjects_groupsId == id).ToList());
+        }
+
+        [HttpGet]
+        public ActionResult Edit_item(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            var cycles_item = db.Cycles_item.Find(id);
+            if (cycles_item != null)
+            {
+                // SelectList buildings = new SelectList(db.Buildings, "Id", "Name", cabinet.BuildingsId);
+                //ViewBag.Buildings = buildings;
+                return PartialView("Edit_item", cycles_item);
+            }
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpPost]
+        public ActionResult Edit_item(Cycles_item cycles_item)
+        {
+            db.Entry(cycles_item).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
 
@@ -220,11 +262,14 @@ namespace Shedule.Controllers
         //{
         //    SelectList cycles = new SelectList(db.Cycles, "Id", "Name");
         //    ViewBag.Cycles = cycles;
+
         //    if (id == null)
         //    {
         //        return HttpNotFound();
         //    }
+
         //    var cycles_item = db.Cycles_item.Find(id);
+
         //    if (cycles_item != null)
         //    {
         //        // SelectList buildings = new SelectList(db.Buildings, "Id", "Name", cabinet.BuildingsId);
@@ -244,28 +289,28 @@ namespace Shedule.Controllers
         //    return RedirectToAction("Index");
         //}
 
-        //public ActionResult Delete_item(int id)
-        //{
-        //    var cycles_item = db.Cycles_item.Find(id);
-        //    if (cycles_item != null)
-        //    {
-        //        return PartialView("Delete_item", cycles_item);
-        //    }
-        //    return View("Index");
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[ActionName("Delete_item")]
-        //public ActionResult DeleteRecord_item(int id)
-        //{
-        //    var cycles_item = db.Cycles_item.Find(id);
+        public ActionResult Delete_item(int id)
+        {
+            var cycles_item = db.Cycles_item.Find(id);
+            if (cycles_item != null)
+            {
+                return PartialView("Delete_item", cycles_item);
+            }
+            return View("Index");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete_item")]
+        public ActionResult DeleteRecord_item(int id)
+        {
+            var cycles_item = db.Cycles_item.Find(id);
 
-        //    if (cycles_item != null)
-        //    {
-        //        db.Cycles_item.Remove(cycles_item);
-        //        db.SaveChanges();
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+            if (cycles_item != null)
+            {
+                db.Cycles_item.Remove(cycles_item);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
