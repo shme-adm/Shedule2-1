@@ -14,9 +14,11 @@ namespace Shedule.Models
         public string Name { get; set; }        
 
         public virtual ICollection<Cycles_item> Cycles_item { get; set; }
+        public virtual ICollection<Groups> Groups { get; set; }
         public Cycles()
         {
             Cycles_item = new List<Cycles_item>();
+            Groups = new List<Groups>();
         }
        
     }

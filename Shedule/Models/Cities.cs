@@ -14,10 +14,12 @@ namespace Shedule.Models
 
         public ICollection<Units> Units { get; set; }
         public ICollection<Buildings> Buildings { get; set; }
+        public ICollection<Groups> Groups { get; set; }
         public Cities()
         {
             Units = new List<Units>();
             Buildings = new List<Buildings>();
+            Groups = new List<Groups>();
         }
                 
     }

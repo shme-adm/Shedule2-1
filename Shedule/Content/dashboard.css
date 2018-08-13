@@ -3,6 +3,8 @@ body {
     line-height: 1.2;
 }
 
+
+
 .feather {
   width: 16px;
   height: 16px;
@@ -12,6 +14,8 @@ body {
 /*table{
 
 }*/
+
+
 .nn {
     margin-bottom: 0rem;    
 }
@@ -136,5 +140,10 @@ body {
 
 .card-header {
     background-color: rgba(20, 137, 156, 0.14);
+}
+
+.inf {
+    background-color: rgba(20, 137, 156, 0.14);
+    border:groove;
 }
 
