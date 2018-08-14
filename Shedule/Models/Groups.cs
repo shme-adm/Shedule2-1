@@ -21,6 +21,12 @@ namespace Shedule.Models
         [DataType(DataType.Date)]
         public DateTime DateTo { get; set; }
 
+        [Display(Name = "Количество подгрупп")]
+        public int? QuantitySubGroups { get; set; }
+
+        [Display(Name = "Бюджет")]
+        public bool Budget { get; set; }
+
         [Display(Name = "Цикл")]
         public int? CyclesId { get; set; }
         public Cycles Cycles { get; set; }

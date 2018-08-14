@@ -31,11 +31,16 @@
                 <th class="" scope="col">Город</th>
                 <th class="" scope="col">Начало обучения</th>
                 <th class="" scope="col">Конец обучения</th>
+                <th class="" scope="col">Подгруппы</th>
+                <th class="" scope="col">Бюджет</th>
                 <th class="" scope="col"></th>
                 <th class="" scope="col"></th>
             </tr>
         </thead>
-        @{ int i = 1;}
+        @{ int i = 1;
+           var yes = Html.Raw("<span data-feather=check color=green></ span >");
+           var no = Html.Raw("<span data-feather=minus color=red></ span >");
+         }
         @foreach (var item in ViewBag.Groups)
         {
             <tr>
@@ -45,13 +50,20 @@
                 <td class="">@item.City.Name</td>
                 <td class="">@item.DateFrom.ToShortDateString()</td>
                 <td class="">@item.DateTo.ToShortDateString()</td>
+                <td class="">@item.QuantitySubGroups</td>
+                <td class="">
+                    @if(item.Budget)
+                    { @yes }
+                    else
+                    { @no }
+                </td>
                 <td class="text-right">
                     @*<span data-feather="edit"></span>*@
-                    @Html.ActionLink("Редактировать", "EditBuildings", "Directories", new { id = item.Id },
+                    @Html.ActionLink("Редактировать", "Edit", "Groups", new { id = item.Id },
                           new { @class = "viewDialog", data_dialog_title = "Редактирование модели" })
                 </td>
                 <td class="text-right">
-                    @Html.ActionLink("Удалить", "DeleteBuildings", "Directories", new { id = item.Id },
+                    @Html.ActionLink("Удалить", "Delete", "Groups", new { id = item.Id },
                           new { @class = "viewDialog", data_dialog_title = "Удаление модели" })
                 </td>
             </tr>

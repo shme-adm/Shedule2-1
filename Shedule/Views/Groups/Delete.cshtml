@@ -1,0 +1,19 @@
+﻿<div class="modal-content">
+    <div class="modal-header d-flex justify-content-center">
+        <h4>Удалить данную запись?</h4>        
+    </div>
+    <div class="modal-body">       
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="d-flex justify-content">
+                <input type="submit" class="btn btn-outline-success" value="Удалить" />
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Отмена</button>
+            </div>
+
+        }
+    </div>
+</div>
+
+
