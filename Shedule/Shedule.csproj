@@ -162,6 +162,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808151041306_migrate.cs" />
+    <Compile Include="Migrations\201808151041306_migrate.Designer.cs">
+      <DependentUpon>201808151041306_migrate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Buildings.cs" />
     <Compile Include="Models\Cabinets.cs" />
     <Compile Include="Models\Cities.cs" />
@@ -354,6 +359,8 @@
     <Content Include="Views\Groups\Create.cshtml" />
     <Content Include="Views\Groups\Delete.cshtml" />
     <Content Include="Views\Groups\Edit.cshtml" />
+    <Content Include="Views\Subjects\Index_new.cshtml" />
+    <Content Include="Views\Subjects\GetItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -366,7 +373,11 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808151041306_migrate.resx">
+      <DependentUpon>201808151041306_migrate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
