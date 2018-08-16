@@ -87,6 +87,12 @@ namespace Shedule.Controllers
             //return PartialView("Create_subject");
         }
 
+
+        public ActionResult GetItems(int id)////необходимо попрпавить вывод списков после выбора
+        {
+            return PartialView(db.Subjects.Where(c => c.Subjects_groupsId == id).ToList());
+        }
+
         [HttpPost]
         public ActionResult Create_subject(Subjects subjects/*, Subjects_groups subjects_groups*/)
         {
