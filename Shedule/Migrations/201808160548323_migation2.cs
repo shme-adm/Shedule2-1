@@ -3,7 +3,7 @@ namespace Shedule.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class migrate : DbMigration
+    public partial class migation2 : DbMigration
     {
         public override void Up()
         {
@@ -82,6 +82,7 @@ namespace Shedule.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Hours = c.Int(),
+                        SubjectsGroupsId = c.Int(),
                         CyclesId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)

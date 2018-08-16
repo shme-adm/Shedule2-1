@@ -7,13 +7,13 @@ namespace Shedule.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class migrate : IMigrationMetadata
+    public sealed partial class migation2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(migrate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(migation2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808151041306_migrate"; }
+            get { return "201808160548323_migation2"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,9 +1,15 @@
-body {
+/*body {
     font-size: .875rem;
     line-height: 1.2;
+}*/
+* {
+    font-size: .900rem;
+    line-height: 1.2;
 }
-
-
+/*body {
+    font-size: .875rem;
+    line-height: 1.2;
+}*/
 
 .feather {
   width: 16px;
