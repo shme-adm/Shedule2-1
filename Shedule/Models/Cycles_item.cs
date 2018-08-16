@@ -10,11 +10,13 @@ namespace Shedule.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Предмет")]
+        [Display(Name = "Тема")]
         public string Name { get; set; }
 
         [Display(Name = "Часы")]
         public int? Hours { get; set; }
+
+        public int? SubjectsGroupsId { get; set; }
         
         [Display(Name = "Цикл")]
         public int? CyclesId { get; set; }

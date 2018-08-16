@@ -42,7 +42,7 @@ namespace Shedule.Controllers
         public ActionResult Copy(int? id)
         {
            
-            ViewBag.Subjects_groups = new SelectList(db.Subjects_groups, "Id", "Name");
+            ViewBag.Subjects_groups = new SelectList(db.Subjects_groups.OrderBy(sg=>sg.Name), "Id", "Name");
             //ViewBag.Subjects = new SelectList(db.Subjects, "Id", "Name");
             //ViewBag.Subjects = new SelectList(itemsFromBase,"Id","Name");
 
@@ -54,12 +54,12 @@ namespace Shedule.Controllers
         {
             var id_cycle = cycles.Id;
             var id_subject_group = Int32.Parse(Request.Form["Subjects_groups"]);
-            var items = new List<Subjects>(db.Subjects.Where(l => l.Subjects_groupsId == id_subject_group));
+            var items = new List<Subjects>(db.Subjects.Where(l => l.Subjects_groupsId == id_subject_group).OrderBy(s=>s.Name));
             
 
             foreach (var item in items)
             {
-                db.Cycles_item.Add(new Cycles_item { Name = item.Name, Hours = 0, CyclesId = id_cycle });
+                db.Cycles_item.Add(new Cycles_item { Name = item.Name, Hours = 0, CyclesId = id_cycle, SubjectsGroupsId=id_subject_group });
             }          
             db.SaveChanges();
 
