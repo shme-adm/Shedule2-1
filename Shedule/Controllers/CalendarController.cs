@@ -37,12 +37,15 @@ namespace Shedule.Controllers
 
         public ActionResult Data()
         {
-            var ttt = db.Events.ToList();
-            return View(ttt);
+           
+            var eventsForLoad = db.Events.ToList();
+            return View(eventsForLoad);
         }
 
         public ActionResult Save(Events changedEvent, FormCollection actionValues)
         {
+            //ViewBag.Type = new SelectList(db.TypeOfClasses.OrderBy(t => t.Name), "Id", "Name");
+            //ViewBag.Subjects_groups = new SelectList(db.Subjects_groups.OrderBy(sg => sg.Name), "Id", "Name");
             String action_type = actionValues["!nativeeditor_status"];
             Int64 source_id = Int64.Parse(actionValues["id"]);
             Int64 target_id = source_id;
