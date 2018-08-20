@@ -1,0 +1,13 @@
+﻿@{
+                Layout = null;
+                Response.ContentType = "text/xml";
+}
+@model IEnumerable<Shedule.Models.TypeOfClasses>
+<data>
+    @foreach (var types in Model)
+    {
+        <type id="@types.Id">
+            <start_date><![CDATA[@types.Name]]></start_date>           
+        </type>
+    }
+</data>

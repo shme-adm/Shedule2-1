@@ -8,6 +8,8 @@
 
 <script src="~/Scripts/dhtmlxscheduler/ext/dhtmlxscheduler_editors.js" type="text/javascript" charset="utf-8"></script>
 
+<script src="~/Scripts/dhtmlxscheduler/ext/dhtmlxscheduler_mvc.js" type="text/javascript" charset="utf-8"></script>
+
 
 <style type="text/css" media="screen">
     html, body {
@@ -26,14 +28,36 @@
         scheduler.config.last_hour = 22;
         scheduler.config.limit_time_select = true;
         scheduler.templates.tooltip_date_format = scheduler.date.date_to_str("%d-%m-%Y %H:%i");
-        //scheduler.xy.scale_width = 70;
+        //scheduler.xy.scale_width = 70;        
+        scheduler.locale.labels.section_types = 'Тип занятия';
+        scheduler.locale.labels.section_group = 'Группа';
+        scheduler.locale.labels.section_teacher = 'Преподаватель';     
+        scheduler.locale.labels.section_cabinet = 'Кабинет'; 
+        scheduler.locale.labels.section_predmet = 'Тема'; 
+        scheduler.locale.labels.section_subgroup = 'Подгруппа'; 
 
-        @*var types = @ViewBag.Type;*@
+       
+        var alert_opts6 = [
+            { key: 1, label: "None", value:"None" },
+            { key: 2, label: "On start date", value: "On start date" },
+            { key: 3, label: "1 day before", value: "1 day before" }
+        ];
+
+        @*var list = @ViewData["types"];*@
         
         scheduler.config.lightbox.sections = [
-            { name: "Комментарий", height: 200, map_to: "text", type: "textarea", focus: true },
+            { name: "group", height: 10, map_to: "type", type: "select", options: scheduler.serverList("types1"), focus: true  },
+            { name: "subgroup", height: 10, map_to: "type", type: "select", options: scheduler.serverList("types2") },
+            { name: "teacher", height: 10, map_to: "type", type: "select", options: scheduler.serverList("types3") },
+            { name: "cabinet", height: 10, map_to: "type", type: "select", options: scheduler.serverList("types4") },
+            { name: "predmet", height: 10, map_to: "type", type: "select", options: scheduler.serverList("types5") },
+            { name: "types", height: 10, map_to: "types", type: "select", options: alert_opts6 },   
+            { name: "Комментарий", height: 100, map_to: "text", type: "textarea" },
             { name: "time", height: 72, type: "time", map_to: "auto" }
-            //{ name: "Тип занятия", options: types, height: 21, type: "select" }
+                     
+            
+           
+           
             //{ name: "group", height: 21, type:"select", map_to: "group" }
 
         ];

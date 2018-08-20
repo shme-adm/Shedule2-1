@@ -163,11 +163,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808160548323_migation2.cs" />
-    <Compile Include="Migrations\201808160548323_migation2.Designer.cs">
-      <DependentUpon>201808160548323_migation2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Buildings.cs" />
     <Compile Include="Models\Cabinets.cs" />
     <Compile Include="Models\Cities.cs" />
@@ -884,6 +879,7 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Calendar\Data.cshtml" />
     <Content Include="Views\Calendar\Save.cshtml" />
+    <Content Include="Views\Calendar\Types.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -895,11 +891,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808160548323_migation2.resx">
-      <DependentUpon>201808160548323_migation2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -21,6 +21,18 @@ namespace Shedule.Controllers
             Target_id = target_id;
         }
     }
+    
+    public class typesOfClasses
+    {
+        public int id;
+        public string name;
+        
+        //public typesOfClasses(int id, string name)
+        //{
+        //    Id = id;
+        //    Name = name;
+        //}
+    }
 
     public class CalendarController : Controller
     {
@@ -32,6 +44,15 @@ namespace Shedule.Controllers
         public ActionResult Index()
         {
             
+            var typeList = new List<typesOfClasses>();
+            var tt = new List<TypeOfClasses>(db.TypeOfClasses);
+            int i = 1; 
+            foreach (var items in tt){
+                var temp = new typesOfClasses { id = i++, name = items.Name };
+                typeList.Add(temp);
+            }
+
+            ViewData["types"] = typeList;   
             return View();
         }
 
