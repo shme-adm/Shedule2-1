@@ -15,13 +15,13 @@
 </style>
 <script type="text/javascript" charset="utf-8">
     function init() {
-        scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+        scheduler.config.xml_date = "%m-%d-%Y %H:%i";
         scheduler.config.details_on_create = true;
         
         scheduler.config.first_hour = 7;
         scheduler.config.last_hour = 22;
         scheduler.config.limit_time_select = true;
-        scheduler.templates.tooltip_date_format = scheduler.date.date_to_str("%Y-%m-%d %H:%i");
+        scheduler.templates.tooltip_date_format = scheduler.date.date_to_str("%m-%d-%Y %H:%i");
         //scheduler.xy.scale_width = 70;      
         
         scheduler.init('scheduler_here', new Date(2018, 0, 1), "week");
@@ -30,15 +30,7 @@
         var dp = new dataProcessor("/Calendar/Save");
         dp.init(scheduler);
         dp.setTransactionMode("POST",false);
-        //scheduler.addEvent({
-        //    start_date: "16-08-2018 09:00",
-        //    end_date: "16-08-2018 12:00",
-        //    text: "Meeting",
-        //    holder: "John", // userdata
-        //    room: "5"     // userdata
-        //});
-
-        //scheduler.load("../Content/events.json", "json");
+        
     }
 </script>
 

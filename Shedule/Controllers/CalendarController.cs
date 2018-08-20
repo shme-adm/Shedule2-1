@@ -37,8 +37,8 @@ namespace Shedule.Controllers
 
         public ActionResult Data()
         {
-            var eventsForLoad = db.Events;
-            return View(eventsForLoad);
+            var ttt = db.Events.ToList();
+            return View(ttt);
         }
 
         public ActionResult Save(Events changedEvent, FormCollection actionValues)
