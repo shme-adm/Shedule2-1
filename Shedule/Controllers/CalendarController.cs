@@ -24,7 +24,7 @@ namespace Shedule.Controllers
     
     public class typesOfClasses
     {
-        public int id;
+        public string key;
         public string name;
         
         //public typesOfClasses(int id, string name)
@@ -34,26 +34,83 @@ namespace Shedule.Controllers
         //}
     }
 
+    
+
     public class CalendarController : Controller
     {
 
         ShedulerContext db = new ShedulerContext();
+        
+        //public override IdhtmlxConnector CreateConnector(HttpContext context)
 
         
         // GET: Calendar
         public ActionResult Index()
         {
-            
-            var typeList = new List<typesOfClasses>();
-            var tt = new List<TypeOfClasses>(db.TypeOfClasses);
-            int i = 1; 
-            foreach (var items in tt){
-                var temp = new typesOfClasses { id = i++, name = items.Name };
-                typeList.Add(temp);
+
+            //var typeList = new List<typesOfClasses>();
+            //var tt = new List<TypeOfClasses>(db.TypeOfClasses);
+            //int i = 1; 
+            //foreach (var items in tt){
+            //    var ii = i++;
+
+            //    var temp = new typesOfClasses { key = ii.ToString(), name = items.Name };
+            //    typeList.Add(temp);                
+            //}
+
+            //ViewData["types"] = typeList;   
+
+
+            var typeList = new List<object>();
+            foreach (var item in db.TypeOfClasses)
+            {
+                typeList.Add(new { key = item.Id, label = item.Name });
             }
 
-            ViewData["types"] = typeList;   
+            var groupList = new List<object>();
+            foreach (var item in db.Groups)
+            {
+                groupList.Add(new { key = item.Id, label = item.Name });
+            }
+
+            var teacherList = new List<object>();
+            foreach (var item in db.Teachers)
+            {
+                teacherList.Add(new { key = item.Id, label = item.Name });
+            }
+
+            var cabinetList = new List<object>();
+            foreach (var item in db.Cabinets)
+            {
+                cabinetList.Add(new { key = item.Id, label = item.Name });
+            }
+
+            var subjectList = new List<object>();
+            foreach (var item in db.Subjects)
+            {
+                subjectList.Add(new { key = item.Id, label = item.Name });
+            }
+            //var typeList = new List<object>();
+            //foreach (var item in db.TypeOfClasses)
+            //{
+            //    typeList.Add(new { key = item.Id, label = item.Name });
+            //}
+            
+            ViewBag.typeList = typeList;
+            ViewBag.groupList = groupList;
+            ViewBag.teacherList = teacherList;
+
+            ViewBag.cabinetList = cabinetList;
+            ViewBag.subjectList = subjectList;
+            //ViewBag.teacherList = teacherList;
             return View();
+        }
+
+        public ActionResult Types()
+        {
+
+            var typesForLoad = db.TypeOfClasses.ToList();
+            return View(typesForLoad);
         }
 
         public ActionResult Data()
