@@ -62,36 +62,36 @@ namespace Shedule.Controllers
 
 
             var typeList = new List<object>();
-            foreach (var item in db.TypeOfClasses)
+            foreach (var item in db.TypeOfClasses.OrderBy(t=>t.Name))
             {
                 typeList.Add(new { key = item.Id, label = item.Name });
             }
 
             var groupList = new List<object>();
-            foreach (var item in db.Groups)
+            foreach (var item in db.Groups.OrderBy(g=>g.Name))
             {
                 groupList.Add(new { key = item.Id, label = item.Name });
             }
 
             var teacherList = new List<object>();
-            foreach (var item in db.Teachers)
+            foreach (var item in db.Teachers.OrderBy(t=>t.Surname))
             {
-                teacherList.Add(new { key = item.Id, label = item.Name });
+                teacherList.Add(new { key = item.Id, label = item.Surname + " " + item.Name });
             }
 
             var cabinetList = new List<object>();
-            foreach (var item in db.Cabinets)
+            foreach (var item in db.Cabinets.OrderBy(c=>c.Name))
             {
                 cabinetList.Add(new { key = item.Id, label = item.Name });
             }
 
             var subjectList = new List<object>();
-            foreach (var item in db.Subjects)
+            foreach (var item in db.Subjects.OrderBy(s=>s.Name))
             {
                 subjectList.Add(new { key = item.Id, label = item.Name });
             }
             var unitList = new List<object>();
-            foreach (var item in db.Units)
+            foreach (var item in db.Units.OrderBy(u=>u.Name))
             {
                 unitList.Add(new { key = item.Id, label = item.Name });
             }

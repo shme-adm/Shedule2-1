@@ -12,7 +12,7 @@ namespace Shedule.Models
         public DateTime end_date { get; set; }
         public string text { get; set; }
         public string type { get; set; }
-        public string group { get; set; }
+        public string _group { get; set; }
         public string subject { get; set; }
         public string cabinet { get; set; }
         public string teacher { get; set; }
