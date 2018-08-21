@@ -19,7 +19,9 @@
         overflow: hidden;
     }
 </style>
+
 <script type="text/javascript" charset="utf-8">
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function init() {
         scheduler.config.xml_date = "%d-%m-%Y %H:%i";
         scheduler.config.details_on_create = true;
@@ -36,33 +38,56 @@
         scheduler.locale.labels.section_subject = 'Тема'; 
         scheduler.locale.labels.section_subgroup = 'Подгруппа'; 
         scheduler.locale.labels.section_comment = 'Комментарий'; 
+        scheduler.locale.labels.section_unit = 'Подразделение'; 
 
        
-        var alert_opts6 = [
-            { key: 1, label: "None"},
-            { key: 2, label: "On start date"},
-            { key: 3, label: "1 day before"}
-        ];        
-
         var typeList = @Html.Raw(Json.Encode(ViewBag.typeList));
         var groupList = @Html.Raw(Json.Encode(ViewBag.groupList));
         var teacherList = @Html.Raw(Json.Encode(ViewBag.teacherList));
         var cabinetList = @Html.Raw(Json.Encode(ViewBag.cabinetList));
         var subjectList = @Html.Raw(Json.Encode(ViewBag.subjectList));
+        var unitList = @Html.Raw(Json.Encode(ViewBag.unitList));
         
         scheduler.config.lightbox.sections = [
             { name: "group", height: 10, map_to: "group", type: "select", options: groupList, focus: true  },
-            //{ name: "subgroup", height: 10, map_to: "type", type: "select", options: scheduler.serverList("types2") },
+            { name: "unit", height: 10, map_to: "unit", type: "select", options: unitList },
             { name: "teacher", height: 10, map_to: "teacher", type: "select", options: teacherList },
             { name: "cabinet", height: 10, map_to: "cabinet", type: "select", options: cabinetList },
             { name: "subject", height: 10, map_to: "subject", type: "select", options: subjectList},
             { name: "type", height: 10, map_to: "type", type: "select", options: typeList },   
-            { name: "comment", height: 100, map_to: "text", type: "textarea", default_value: null },
+            { name: "comment", height: 100, map_to: "text", type: "textarea", default_value: "11 " },
             { name: "time", height: 72, type: "time", map_to: "auto" }         
             
            
         ];
 
+        scheduler.attachEvent("onTemplatesReady", function () {
+            scheduler.templates.event_text = function (start, end, event) {
+                for (var i = 0; i < groupList.length; i++) {
+                    if (event.group == groupList[i].key) {
+                        var egroup = groupList[i].label;                //        
+                    }              
+                    
+                }
+                for ( i = 0; i < groupList.length; i++) {
+                    if (event.subject == subjectList[i].key) {
+                        var esubject = subjectList[i].label;                //        
+                    }
+
+                }
+                for ( i = 0; i < unitList.length; i++) {
+                    if (event.unit == unitList[i].key) {
+                        var eunit = unitList[i].label;                //        
+                    }
+
+                }
+                
+                return "<b>" + egroup + "</b> <br>" + esubject + "<br> <i>" + eunit +"</i>";
+            }
+        }); 
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         scheduler.init('scheduler_here', null, "week");
 
         scheduler.load("/Calendar/Data");

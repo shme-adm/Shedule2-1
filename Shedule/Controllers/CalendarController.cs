@@ -90,19 +90,19 @@ namespace Shedule.Controllers
             {
                 subjectList.Add(new { key = item.Id, label = item.Name });
             }
-            //var typeList = new List<object>();
-            //foreach (var item in db.TypeOfClasses)
-            //{
-            //    typeList.Add(new { key = item.Id, label = item.Name });
-            //}
-            
+            var unitList = new List<object>();
+            foreach (var item in db.Units)
+            {
+                unitList.Add(new { key = item.Id, label = item.Name });
+            }
+
             ViewBag.typeList = typeList;
             ViewBag.groupList = groupList;
             ViewBag.teacherList = teacherList;
 
             ViewBag.cabinetList = cabinetList;
             ViewBag.subjectList = subjectList;
-            //ViewBag.teacherList = teacherList;
+            ViewBag.unitList = unitList;
             return View();
         }
 

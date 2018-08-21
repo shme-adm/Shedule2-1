@@ -16,6 +16,7 @@ namespace Shedule.Models
         public string subject { get; set; }
         public string cabinet { get; set; }
         public string teacher { get; set; }
+        public string unit { get; set; }
         //public virtual ICollection<Groups> Groups { get; set; }
         //public Events()
         //{
