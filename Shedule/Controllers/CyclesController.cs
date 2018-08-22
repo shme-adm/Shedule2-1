@@ -121,9 +121,10 @@ namespace Shedule.Controllers
             {
                 return HttpNotFound();
             }
-            var cycles = db.Cycles.Find(id);
+            
             if (cycles != null)
             {
+				var cycles = db.Cycles.Find(id);
                 // SelectList buildings = new SelectList(db.Buildings, "Id", "Name", cabinet.BuildingsId);
                 //ViewBag.Buildings = buildings;
                 return PartialView("Edit", cycles);
