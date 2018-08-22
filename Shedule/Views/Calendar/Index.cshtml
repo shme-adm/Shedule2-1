@@ -30,9 +30,14 @@
         scheduler.config.last_hour = 22;
         scheduler.config.limit_time_select = true;
         scheduler.templates.tooltip_date_format = scheduler.date.date_to_str("%d-%m-%Y %H:%i");
+        //var format = scheduler.date.date_to_str("%d-%m-%Y %H:%i"); 
+        //scheduler.templates.tooltip_text = function (start, end, event) {
+        //    return "<b>Группа:</b> " + event.text + "<br/><b>Start date:</b> " +
+        //        format(start) + "<br/><b>End date:</b> " + format(end);
+        //};
         //scheduler.xy.scale_width = 70;        
         scheduler.locale.labels.section_type = 'Тип занятия';
-        scheduler.locale.labels.section_group = 'Группа';
+        scheduler.locale.labels.section_groups = 'Группа';
         scheduler.locale.labels.section_teacher = 'Преподаватель';     
         scheduler.locale.labels.section_cabinet = 'Кабинет'; 
         scheduler.locale.labels.section_subject = 'Тема'; 
@@ -42,14 +47,14 @@
 
        
         var typeList = @Html.Raw(Json.Encode(ViewBag.typeList));
-        var groupList = @Html.Raw(Json.Encode(ViewBag.groupList));
+        var groupsList = @Html.Raw(Json.Encode(ViewBag.groupsList));
         var teacherList = @Html.Raw(Json.Encode(ViewBag.teacherList));
         var cabinetList = @Html.Raw(Json.Encode(ViewBag.cabinetList));
         var subjectList = @Html.Raw(Json.Encode(ViewBag.subjectList));
         var unitList = @Html.Raw(Json.Encode(ViewBag.unitList));
         
         scheduler.config.lightbox.sections = [
-            { name: "group", height: 10, map_to: "group", type: "select", options: groupList, focus: true  },
+            { name: "groups", height: 10, map_to: "groups", type: "select", options: groupsList, focus: true  },
             { name: "unit", height: 10, map_to: "unit", type: "select", options: unitList },
             { name: "teacher", height: 10, map_to: "teacher", type: "select", options: teacherList },
             { name: "cabinet", height: 10, map_to: "cabinet", type: "select", options: cabinetList },
@@ -63,21 +68,21 @@
 
         scheduler.attachEvent("onTemplatesReady", function () {
             scheduler.templates.event_text = function (start, end, event) {
-                for (var i = 0; i < groupList.length; i++) {
-                    if (event.group == groupList[i].key) {
-                        var egroup = groupList[i].label;                //        
+                for (var i = 0; i < groupsList.length; i++) {
+                    if (event.groups == groupsList[i].key) {
+                        var egroup = groupsList[i].label;                    
                     }              
                     
                 }
-                for ( i = 0; i < groupList.length; i++) {
+                for ( i = 0; i < subjectList.length; i++) {
                     if (event.subject == subjectList[i].key) {
-                        var esubject = subjectList[i].label;                //        
+                        var esubject = subjectList[i].label;                   
                     }
 
                 }
                 for ( i = 0; i < unitList.length; i++) {
                     if (event.unit == unitList[i].key) {
-                        var eunit = unitList[i].label;                //        
+                        var eunit = unitList[i].label;                     
                     }
 
                 }
@@ -86,6 +91,7 @@
             }
         }); 
 
+       
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         scheduler.init('scheduler_here', null, "week");
@@ -98,6 +104,12 @@
 </script>
 
 <body onload="init()">
+    <div>
+        <div>
+            <span>Подразделение:</span>
+            @*@Html.DropDownList("groupList", ViewBag.groupList as SelectList, new { @class = "form-control", id = "groupList" })*@
+        </div>
+    </div>
     <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
         <div class="dhx_cal_navline">
             <div class="dhx_cal_prev_button">&nbsp;</div>

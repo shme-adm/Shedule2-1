@@ -22,61 +22,34 @@ namespace Shedule.Controllers
         }
     }
     
-    public class typesOfClasses
-    {
-        public string key;
-        public string name;
-        
-        //public typesOfClasses(int id, string name)
-        //{
-        //    Id = id;
-        //    Name = name;
-        //}
-    }
-
     
 
     public class CalendarController : Controller
     {
 
-        ShedulerContext db = new ShedulerContext();
-        
-        //public override IdhtmlxConnector CreateConnector(HttpContext context)
-
-        
+        ShedulerContext db = new ShedulerContext();      
+    
         // GET: Calendar
+//---------вывод расписания
         public ActionResult Index()
         {
-
-            //var typeList = new List<typesOfClasses>();
-            //var tt = new List<TypeOfClasses>(db.TypeOfClasses);
-            //int i = 1; 
-            //foreach (var items in tt){
-            //    var ii = i++;
-
-            //    var temp = new typesOfClasses { key = ii.ToString(), name = items.Name };
-            //    typeList.Add(temp);                
-            //}
-
-            //ViewData["types"] = typeList;   
-
-
+//---------формирование данных для выпадающих списков
             var typeList = new List<object>();
             foreach (var item in db.TypeOfClasses.OrderBy(t=>t.Name))
             {
                 typeList.Add(new { key = item.Id, label = item.Name });
             }
 
-            var groupList = new List<object>();
+            var groupsList = new List<object>();
             foreach (var item in db.Groups.OrderBy(g=>g.Name))
             {
-                groupList.Add(new { key = item.Id, label = item.Name });
+                groupsList.Add(new { key = item.Id, label = item.Name });
             }
 
             var teacherList = new List<object>();
             foreach (var item in db.Teachers.OrderBy(t=>t.Surname))
             {
-                teacherList.Add(new { key = item.Id, label = item.Surname + " " + item.Name });
+                teacherList.Add(new { key = item.Id, label = item.Surname + " " + item.Name + " " + item.Middlename});
             }
 
             var cabinetList = new List<object>();
@@ -97,7 +70,7 @@ namespace Shedule.Controllers
             }
 
             ViewBag.typeList = typeList;
-            ViewBag.groupList = groupList;
+            ViewBag.groupsList = groupsList;
             ViewBag.teacherList = teacherList;
 
             ViewBag.cabinetList = cabinetList;
@@ -105,25 +78,16 @@ namespace Shedule.Controllers
             ViewBag.unitList = unitList;
             return View();
         }
-
-        public ActionResult Types()
-        {
-
-            var typesForLoad = db.TypeOfClasses.ToList();
-            return View(typesForLoad);
-        }
-
+ //--------Загрузка данных из БД      
         public ActionResult Data()
         {
            
             var eventsForLoad = db.Events.ToList();
             return View(eventsForLoad);
         }
-
+//---------Сохранение данных календаря в БД
         public ActionResult Save(Events changedEvent, FormCollection actionValues)
         {
-            //ViewBag.Type = new SelectList(db.TypeOfClasses.OrderBy(t => t.Name), "Id", "Name");
-            //ViewBag.Subjects_groups = new SelectList(db.Subjects_groups.OrderBy(sg => sg.Name), "Id", "Name");
             String action_type = actionValues["!nativeeditor_status"];
             Int64 source_id = Int64.Parse(actionValues["id"]);
             Int64 target_id = source_id;
@@ -135,15 +99,15 @@ namespace Shedule.Controllers
                 switch (action_type)
                 {
                     case "inserted":
-                        db.Events.Add(changedEvent);
+                        db.Events.Add(changedEvent);//---запись
                         break;
                     case "deleted":
                         changedEvent = db.Events.SingleOrDefault(ev => ev.id == source_id);
-                        db.Events.Remove(changedEvent);
+                        db.Events.Remove(changedEvent);//---удаление
                         break;
                     default: // "updated"
                         changedEvent = db.Events.SingleOrDefault(ev => ev.id == source_id);
-                        UpdateModel(changedEvent);
+                        UpdateModel(changedEvent);//---по умолчанию обновить отображение
                         break;
                 }
                 db.SaveChanges();

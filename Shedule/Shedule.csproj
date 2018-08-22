@@ -879,7 +879,6 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Calendar\Data.cshtml" />
     <Content Include="Views\Calendar\Save.cshtml" />
-    <Content Include="Views\Calendar\Types.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
