@@ -37,7 +37,7 @@
         //};
         //scheduler.xy.scale_width = 70;        
         scheduler.locale.labels.section_type = 'Тип занятия';
-        scheduler.locale.labels.section_groups = 'Группа';
+        scheduler.locale.labels.section_group = 'Группа';
         scheduler.locale.labels.section_teacher = 'Преподаватель';     
         scheduler.locale.labels.section_cabinet = 'Кабинет'; 
         scheduler.locale.labels.section_subject = 'Тема'; 
@@ -47,14 +47,14 @@
 
        
         var typeList = @Html.Raw(Json.Encode(ViewBag.typeList));
-        var groupsList = @Html.Raw(Json.Encode(ViewBag.groupsList));
+        var groupList = @Html.Raw(Json.Encode(ViewBag.groupList));
         var teacherList = @Html.Raw(Json.Encode(ViewBag.teacherList));
         var cabinetList = @Html.Raw(Json.Encode(ViewBag.cabinetList));
         var subjectList = @Html.Raw(Json.Encode(ViewBag.subjectList));
         var unitList = @Html.Raw(Json.Encode(ViewBag.unitList));
         
         scheduler.config.lightbox.sections = [
-            { name: "groups", height: 10, map_to: "groups", type: "select", options: groupsList, focus: true  },
+            { name: "group", height: 10, map_to: "group", type: "select", options: groupList, focus: true  },
             { name: "unit", height: 10, map_to: "unit", type: "select", options: unitList },
             { name: "teacher", height: 10, map_to: "teacher", type: "select", options: teacherList },
             { name: "cabinet", height: 10, map_to: "cabinet", type: "select", options: cabinetList },
@@ -68,9 +68,9 @@
 
         scheduler.attachEvent("onTemplatesReady", function () {
             scheduler.templates.event_text = function (start, end, event) {
-                for (var i = 0; i < groupsList.length; i++) {
-                    if (event.groups == groupsList[i].key) {
-                        var egroup = groupsList[i].label;                    
+                for (var i = 0; i < groupList.length; i++) {
+                    if (event.group == groupList[i].key) {
+                        var egroup = groupList[i].label;                    
                     }              
                     
                 }

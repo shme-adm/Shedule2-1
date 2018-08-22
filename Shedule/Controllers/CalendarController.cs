@@ -40,10 +40,10 @@ namespace Shedule.Controllers
                 typeList.Add(new { key = item.Id, label = item.Name });
             }
 
-            var groupsList = new List<object>();
+            var groupList = new List<object>();
             foreach (var item in db.Groups.OrderBy(g=>g.Name))
             {
-                groupsList.Add(new { key = item.Id, label = item.Name });
+                groupList.Add(new { key = item.Id, label = item.Name });
             }
 
             var teacherList = new List<object>();
@@ -70,7 +70,7 @@ namespace Shedule.Controllers
             }
 
             ViewBag.typeList = typeList;
-            ViewBag.groupsList = groupsList;
+            ViewBag.groupList = groupList;
             ViewBag.teacherList = teacherList;
 
             ViewBag.cabinetList = cabinetList;
