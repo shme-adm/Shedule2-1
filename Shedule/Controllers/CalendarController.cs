@@ -69,6 +69,11 @@ namespace Shedule.Controllers
                 unitList.Add(new { key = item.Id, label = item.Name });
             }
 
+            
+            ViewBag.Units = new SelectList(unitList, "key", "label");
+            ViewBag.Groups = new SelectList(groupList, "key", "label");            
+            ViewBag.Teachers = new SelectList(teacherList, "key", "label");
+
             ViewBag.typeList = typeList;
             ViewBag.groupList = groupList;
             ViewBag.teacherList = teacherList;

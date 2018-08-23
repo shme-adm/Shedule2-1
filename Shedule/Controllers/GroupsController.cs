@@ -30,8 +30,8 @@ namespace Shedule.Controllers
                 items.Add(i);
             }
             SelectList quantity = new SelectList(items);
-            SelectList cycles = new SelectList(db.Cycles, "Id", "Name");
-            SelectList cities = new SelectList(db.Cities, "Id", "Name");
+            SelectList cycles = new SelectList(db.Cycles.OrderBy(cy => cy.Name), "Id", "Name");
+            SelectList cities = new SelectList(db.Cities.OrderBy(ci => ci.Name), "Id", "Name");
 
             ViewBag.Quantity = quantity;
             ViewBag.Cycles = cycles;
@@ -64,8 +64,8 @@ namespace Shedule.Controllers
             }
             var groups = db.Groups.Find(id);
             SelectList quantity = new SelectList(items);
-            SelectList cycles = new SelectList(db.Cycles, "Id", "Name");
-            SelectList cities = new SelectList(db.Cities, "Id", "Name");
+            SelectList cycles = new SelectList(db.Cycles.OrderBy(cy=>cy.Name), "Id", "Name");
+            SelectList cities = new SelectList(db.Cities.OrderBy(ci=>ci.Name), "Id", "Name");
 
             ViewBag.Quantity = quantity;
             ViewBag.Cycles = cycles;

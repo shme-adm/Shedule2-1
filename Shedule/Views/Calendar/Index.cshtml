@@ -91,7 +91,16 @@
             }
         }); 
 
-       
+        var filter_units = document.getElementById("FilterUnits");
+        select.onchange = function () {
+            scheduler.updateFilters(this.value);
+        };
+        //var filter_groups = document.getElementById("FilterGroups");
+        
+        //var filter_teachers = document.getElementById("FilterTeachers");
+        
+
+        
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         scheduler.init('scheduler_here', null, "week");
@@ -105,9 +114,10 @@
 
 <body onload="init()">
     <div>
-        <div>
-            <span>Подразделение:</span>
-            @*@Html.DropDownList("groupList", ViewBag.groupList as SelectList, new { @class = "form-control", id = "groupList" })*@
+        <div class="row">
+            <div class="col">Подразделение: @Html.DropDownList("Units", ViewBag.Groups as SelectList, new { @class = "form-control", id = "FilterUnits" })</div>
+            <div class="col">Группа: @Html.DropDownList("Groups", ViewBag.Units as SelectList, new { @class = "form-control", id = "FilterGroups" })</div>
+            <div class="col">Преподаватель: @Html.DropDownList("Teachers", ViewBag.Teachers as SelectList, new { @class = "form-control", id = "FilterTeachers" })</div>            
         </div>
     </div>
     <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
